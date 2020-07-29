@@ -1,16 +1,20 @@
 <!-- 首页组件 -->
 <template>
-  <div>你好这里是Home</div>
+    <Header></Header>
 </template>
 
 <script>
+import Header from '../../components/Header/Header'
 export default {
   data () {
     return {
+     
     };
   },
 
-  components: {},
+  components: {
+    Header
+  },
 
   computed: {},
 
@@ -20,5 +24,6 @@ export default {
 }
 
 </script>
-<style  lang='stylus' rel='stylesheet/stylus'>
+<style  lang='less'>
+
 </style>

@@ -1,31 +1,14 @@
-// const path = require('path')
- 
 // module.exports = {
-//   chainWebpack: config => {
-//     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
-//     types.forEach(type => addStyleResource(config.module.rule('stylus').oneOf(type)))
-//   },
-// }
- 
-// function addStyleResource (rule) {
-//   rule.use('style-resource')
-//     .loader('style-resources-loader')
-//     .options({
-//       patterns: [
-//         path.resolve(__dirname, './src/common/stylus/mixins.styl'),
-//       ],
-//     })
-// }
-
-const path = require('path');
-
-//拼接路径
-function resolve(dir) {
-	return path.join(__dirname, dir)
-}
-module.exports = {
-	chainWebpack: (config) => {
-		config.resolve.alias
-			.set('@', resolve('src'))
-	},
-}
+//         css: {
+//             loaderOptions: {
+//              css: {},
+//               postcss: {
+//                 plugins: [
+//                 require('postcss-px2rem')({
+//                   remUnit: 37.5
+//                  })
+//                ]
+//             }
+//           }
+//        },
+//    }
