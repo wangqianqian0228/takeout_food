@@ -90,3 +90,38 @@ push一个地址，就会向在history栈中添加一个记录，点击浏览器
 动态绑定class看是否要用对象语法？
 {类名：布尔值}
 如果当前路径==请求的路径
+:class="{ clicked_color:  this.$route.path==='/personal'}"
+
+### flex布局
+要给父盒子定高，内层盒子才会有滚动效果，加上flex:1
+
+> 对象的属性必须是合法的标志符，合法的标志符可以直接不加引号引用，而不是合法的标志符，就不能直接引用，只能加引号括起来，标明其为字符串，如clicked-color不是合法标志符，所以必须加引号，标明其为字符串。
+
+### 点击切换路由
+```js
+@click="goto('/personal')"
+
+goto(paths) {
+      this.$router.replace(paths);
+    },
+```
+
+### 使用的是同一款组件，但是可以根据作用域插槽来控制组件内部的元素是否显示
+在Home组件中，使用作用域插槽的形式占位，在各自的组件中，采用slot="xxx",与子组件中的`<slot name = 'search_left'></slot>`name属性值要一致。
+Header组件中：
+```html
+ <slot name = 'search_left'></slot>
+    <span class="address ellipsis">
+     {{title}}
+    </span>
+ <slot name = 'login_right'></slot>
+```
+在Home组件中：
+```html
+<Header :title="title">
+    <span class="search" slot="search_left">
+        <i class="iconfont iconsousuo"></i>
+    </span>
+    <span class="login-register" slot="login_right">登录|注册</span>
+</Header>
+```

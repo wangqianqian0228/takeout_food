@@ -1,13 +1,15 @@
 <template>
   <div id="app">
     <!-- <router-link to="/home">首页</router-link> -->
-    <router-view />
+    <div class="component-view">
+      <router-view />
+    </div>
+
     <FooterGuide></FooterGuide>
-    
   </div>
 </template>
 <script>
-import FooterGuide from "@/components/FooterGuide/FooterGuide";
+import FooterGuide from "./components/FooterGuide/FooterGuide";
 export default {
   components: {
     FooterGuide,
@@ -21,17 +23,15 @@ body {
   height: 100%;
 }
 #app {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 15rem;
-  margin: 0 auto;
-  height: 100%;
-  overflow: hidden;
-
-}
-.content{
-  flex: 1;
-  overflow: auto;
-  background-color: pink;
+  .component-view {
+    flex: 1;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 </style>

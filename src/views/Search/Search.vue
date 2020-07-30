@@ -1,16 +1,22 @@
 <!-- 搜索组件 -->
 <template>
-  <div>搜索组件</div>
+  <div>
+   <Header :title='title'></Header>
+  </div>
 </template>
 
 <script>
+import Header from '@/components/Header/Header'
 export default {
   data () {
     return {
+      title:'搜索'
     };
   },
 
-  components: {},
+  components: {
+    Header
+  },
 
   computed: {},
 

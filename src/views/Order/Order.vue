@@ -1,16 +1,22 @@
 <!-- 订单组件 -->
 <template>
-  <div>订单组件</div>
+  <div>
+    <Header :title='title'></Header>
+  </div>
 </template>
 
 <script>
+import Header from '@/components/Header/Header'
 export default {
   data () {
     return {
+      title:'订单列表'
     };
   },
 
-  components: {},
+  components: {
+    Header
+  },
 
   computed: {},
 

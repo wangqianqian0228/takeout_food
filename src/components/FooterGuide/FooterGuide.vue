@@ -1,25 +1,45 @@
 <!-- 尾部导航 -->
 <template>
   <footer class="footer_guide">
-    <div href="javascript:;" class="guide_item" @click='goto("/home")' >
+    <div
+      href="javascript:;"
+      class="guide_item"
+      @click="goto('/home')"
+      :class="{ clicked_color:this.$route.path==='/home'  }"
+    >
       <span class="item_icon">
         <i class="iconfont iconwaimai1"></i>
       </span>
       <span>外卖</span>
     </div>
-    <div href="javascript:;" class="guide_item" @click='goto("/search")'>
+    <div
+      href="javascript:;"
+      class="guide_item"
+      @click="goto('/search')"
+      :class="{ clicked_color: this.$route.path==='/search'}"
+    >
       <span class="item_icon">
         <i class="iconfont iconsousuo"></i>
       </span>
       <span>搜索</span>
     </div>
-    <div href="javascript:;" class="guide_item" @click='goto("/order")'>
+    <div
+      href="javascript:;"
+      class="guide_item"
+      @click="goto('/order')"
+      :class="{ clicked_color: this.$route.path==='/order' }"
+    >
       <span class="item_icon">
         <i class="iconfont iconorder"></i>
       </span>
       <span>订单</span>
-    </div> 
-    <div href="javascript:;" class="guide_item" @click='goto("/personal")'>
+    </div>
+    <div
+      href="javascript:;"
+      class="guide_item"
+      @click="goto('/personal')"
+      :class="{ clicked_color:  this.$route.path==='/personal'}"
+    >
       <span class="item_icon">
         <i class="iconfont iconmainoff"></i>
       </span>
@@ -31,7 +51,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      
+    };
   },
 
   components: {},
@@ -41,14 +63,14 @@ export default {
   mounted() {},
 
   methods: {
-    goto(path){
-        this.$router.replace(path);
-    }
+    goto(paths) {
+      this.$router.replace(paths);
+    },
   },
 };
 </script>
 <style lang="less">
-.clicked-color{
+.clicked_color {
   color: #02a774;
 }
 .footer_guide {
@@ -68,7 +90,7 @@ export default {
     span {
       font-size: 0.32rem;
     }
-    span:first-child{
+    span:first-child {
       margin-bottom: 4px;
     }
     .iconfont {

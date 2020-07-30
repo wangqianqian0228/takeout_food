@@ -1,16 +1,22 @@
 <!-- 个人组件 -->
 <template>
-  <div>个人组件</div>
+  <div>
+    <Header :title='title'></Header>
+  </div>
 </template>
 
 <script>
+import Header from '@/components/Header/Header'
 export default {
   data () {
     return {
+      title:'我的'
     };
   },
 
-  components: {},
+  components: {
+    Header
+  },
 
   computed: {},
 
