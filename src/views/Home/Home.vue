@@ -5,6 +5,9 @@
       <span class="search" slot="search_left">
         <i class="iconfont iconsousuo"></i>
       </span>
+      <span class="address ellipsis">
+       {{title}}
+      </span>
       <span class="login-register" slot="login_right">登录|注册</span>
     </Header>
     <div class="content">
@@ -145,8 +148,7 @@ export default {
         // 如果需要分页器
         // 自动播放
         autoplay: {
-           delay:1000,
-           
+          delay: 1000,
         },
         pagination: {
           el: ".swiper-pagination",
@@ -172,6 +174,13 @@ export default {
       line-height: 0.9rem;
       color: #fff;
     }
+    .address {
+    width: 50%;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
     .search {
       width: 0.9rem;
       top: 0;

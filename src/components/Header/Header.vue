@@ -1,19 +1,15 @@
 <!-- 头部组件 -->
 <template>
   <div class="header">
+    <!-- 使用作用域插槽，别的组件引用的时候，你要写成什么形式，就写成什么形式 -->
     <slot name="search_left"></slot>
-    <span class="address ellipsis">
-      {{ title }}
-    </span>
+    <slot></slot>  
     <slot name="login_right"></slot>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    title: String,
-  },
   data() {
     return {};
   },
@@ -36,12 +32,6 @@ export default {
   height: 0.9rem;
   width: 100%;
   background-color: #02a774;
-  .address {
-    width: 50%;
-    text-align: center;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
+  
 }
 </style>

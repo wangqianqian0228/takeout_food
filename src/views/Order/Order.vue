@@ -1,7 +1,11 @@
 <!-- 订单组件 -->
 <template>
   <div>
-    <Header :title='title'></Header>
+    <Header >
+      <span class="address ">
+       {{title}}
+      </span>
+    </Header>
   </div>
 </template>
 
