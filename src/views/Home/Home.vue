@@ -125,8 +125,9 @@
 
 <script>
 import Header from "../../components/Header/Header";
-import Swiper from "swiper";
-import "swiper/swiper-bundle.min.css";
+// import Swiper from "swiper";
+import Swiper from "../../assets/swiper";
+// import "swiper/swiper-bundle.min.css";
 
 export default {
   data() {
@@ -144,12 +145,12 @@ export default {
   mounted() {
     this.$nextTick(() => {
       new Swiper(".swiper-container", {
-        loop: true, // 循环模式选项
+        // loop: true, // 循环模式选项
         // 如果需要分页器
         // 自动播放
-        autoplay: {
-          delay: 1000,
-        },
+        autoplay:true,
+        observer: true,
+        observeParents: true,
         pagination: {
           el: ".swiper-pagination",
         },
