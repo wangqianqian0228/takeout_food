@@ -32,6 +32,7 @@ export default {
   height: 0.9rem;
   width: 100%;
   background-color: #02a774;
+  font-size: .48rem;
   
 }
 </style>

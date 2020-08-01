@@ -14,6 +14,11 @@ export default {
   components: {
     FooterGuide,
   },
+  mounted() {
+    window.onhashchange=function(){
+      console.log(location.hash);
+    }
+  },
 };
 </script>
 <style lang="less">
