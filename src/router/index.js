@@ -4,6 +4,7 @@ import Home from '../views/Home/Home.vue'
 import Search from '../views/Search/Search.vue'
 import Order from '../views/Order/Order.vue'
 import Personal from '../views/Personal/Personal.vue'
+import Login from '../views/Login/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,10 @@ Vue.use(VueRouter)
   {
     path:'/personal',
     component:Personal
+  },
+  {
+    path:'/login',
+    component:Login
   },
   
   
