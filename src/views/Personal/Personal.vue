@@ -153,12 +153,12 @@ export default {
  font-size: .32rem;
  color: #333;
  .iconfont{
-   font-size: .5rem;
+   font-size: .4rem;
    margin-right: 10px;
  }
 }
 .list-item{
-  padding: 20px 8px;
+  padding: 10px 8px;
   border-top: 1px solid #ddd;
   position: relative;
   &::after {
@@ -180,9 +180,13 @@ export default {
 }
 .iconwode-dingdan{
   color: @icon-color;
+  
 }
-.iconjifen{
+.iconjifen.iconfont{
   color:#ff5f3e;
+  font-size: .6rem;
+  margin-left: -.1rem;
+  margin-right: 5px;
 }
 .iconhuiyuan{
   color: #f90;

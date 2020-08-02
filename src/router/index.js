@@ -1,41 +1,50 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home/Home.vue'
-import Search from '../views/Search/Search.vue'
-import Order from '../views/Order/Order.vue'
-import Personal from '../views/Personal/Personal.vue'
-import Login from '../views/Login/Login.vue'
+// import Home from '../views/Home/Home.vue'
+// import Search from '../views/Search/Search.vue'
+// import Order from '../views/Order/Order.vue'
+// import Personal from '../views/Personal/Personal.vue'
+// import Login from '../views/Login/Login.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
+  const routeOption = [
   {
     path:'/home',
-    component:Home
+    name:'Home'
   },
   {
     path:'/',
-    redirect:'/home'
+    redirect:'/home',
+    name:'Home'
   },
   {
     path:'/search',
-    component:Search
+    name:'Search'
   },
   {
     path:'/order',
-    component:Order
+    name: "Order",
   },
   {
     path:'/personal',
-    component:Personal
+    name: "Personal",
   },
   {
     path:'/login',
-    component:Login
+    name: "Login",
   },
   
   
 ]
+const routes = routeOption.map((route) => {
+   const routeItem = {
+      ...route,
+      component: () => import(`../views/${route.name}/${route.name}.vue`)
+   }
+   return routeItem
+})
+// console.log(routes)
 
 const router = new VueRouter({
   mode: 'history',

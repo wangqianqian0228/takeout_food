@@ -15,49 +15,49 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/15.jpeg" />
                 </div>
                 <span>甜品饮品</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/4.jpg" />
                 </div>
                 <span>商超便利</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/13.jpg" />
                 </div>
                 <span>美食</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/9.jpg" />
                 </div>
                 <span>简餐</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/12.jpg" />
                 </div>
                 <span>新店特惠</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/16.jpeg" />
                 </div>
                 <span>准时达</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/6.jpg" />
                 </div>
                 <span>预订早餐</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/10.jpg" />
                 </div>
@@ -65,49 +65,49 @@
               </a>
             </div>
             <div class="swiper-slide">
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/17.jpeg" />
                 </div>
                 <span>川湘菜</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/11.jpg" />
                 </div>
                 <span>麻辣烫</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/13.jpg" />
                 </div>
                 <span>包子粥店</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/19.jpeg" />
                 </div>
                 <span>鲜花蛋糕</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/20.jpeg" />
                 </div>
                 <span>日韩料理</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/14.jpg" />
                 </div>
                 <span>果蔬生鲜</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/21.jpeg" />
                 </div>
                 <span>汉堡薯条</span>
               </a>
-              <a href="javascript:" class="link_to_food">
+              <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/8.jpg" />
                 </div>
@@ -128,10 +128,7 @@
 <script>
 import Header from "../../components/Header/Header";
 import ShopList from "../../components/ShopList/ShopList";
-import Swiper from "swiper";
-// import Swiper from "../../assets/swiper";
-import "swiper/swiper-bundle.min.css";
-
+import Swiper from "../../assets/swiper";
 export default {
   data() {
     return {
@@ -149,7 +146,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       new Swiper(".swiper-container", {
-        // loop: true, // 循环模式选项
+        loop: true, // 循环模式选项
         // 如果需要分页器
         // 自动播放
         autoplay: true,
@@ -223,6 +220,7 @@ export default {
             align-items: flex-start;
             flex-wrap: wrap;
             .link_to_food {
+              display: block;
               width: 25%;
               .food_container {
                 display: block;
