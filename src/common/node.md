@@ -130,3 +130,75 @@ Header组件中：
 1. 引入swipe.js:
    在进行移动端开发的时候，引用swiper.js的时候，引用的是swipe.js 6.0版本，引入过后，发现底部的分页器不能显示，也不能自动轮播，添加了相关属性，都不能解决，在github上查看，目前的swipe.js 6.0确实存在这个bug，最后只能卸载新版本，引用旧版本，（删除node_modules后，重新npm i）当时就是觉得旧版本可能会稳定一点，最后就解决了这个问题。
 2. 有关eslint相关错误，vue-cli3.0没有安装eslintignore,则自己创建文件，文件内容：`src/assets/`
+
+### 项目中用到的一些方法：
+`Object.keys()`:把一个对象转化成数组，这个数组是由对象的属性名所组成的数组。
+`arr.map()`:对数组的每一项进行处理加工，并返回一个新数组。
+```js
+// 按需导入mint-ui中的组件
+import {
+  Button,
+  Toast,
+  Navbar,
+  TabItem,
+  TabContainer,
+  TabContainerItem,
+  Field,
+  Switch
+} from 'mint-ui'
+
+let comsOption = {
+  Button,
+  Toast,
+  Navbar,
+  TabItem,
+  TabContainer,
+  TabContainerItem,
+  Field,
+  Switch
+}
+console.log(Object.keys(comsOption))
+Object.keys(comsOption).forEach(item => {
+  Vue.component(comsOption[item].name, comsOption[item]);
+})
+```
+```js
+// 导入路由
+Vue.use(VueRouter)
+  const routeOption = [
+  {
+    path:'/home',
+    name:'Home'
+  },
+  {
+    path:'/',
+    redirect:'/home',
+    name:'Home'
+  },
+  {
+    path:'/search',
+    name:'Search'
+  },
+  {
+    path:'/order',
+    name: "Order",
+  },
+  {
+    path:'/personal',
+    name: "Personal",
+  },
+  {
+    path:'/login',
+    name: "Login",
+  },
+  
+  
+]
+const routes = routeOption.map((route) => {
+   const routeItem = {
+      ...route,
+      component: () => import(`../views/${route.name}/${route.name}.vue`)
+   }
+   return routeItem
+})
+```
