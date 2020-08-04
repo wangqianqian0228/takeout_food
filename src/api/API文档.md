@@ -90,7 +90,8 @@
 	http://localhost:3000/shops
 
 ### 示例：
-[http://localhost:3000/shops?latitude=40.10038&longitude=116.36867](http://localhost:3000/shops?latitude=40.10038&longitude=116.36867)
+[http://localhost:3000/shops?latitude=40.10038&longitude=116.36867]
+(http://localhost:3000/shops?latitude=40.10038&longitude=116.36867)
 
 ### 请求方式：
 	GET

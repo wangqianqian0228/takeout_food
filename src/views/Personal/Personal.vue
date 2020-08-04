@@ -78,6 +78,7 @@ export default {
   padding: 0.4rem 0.2rem;
   background: @icon-color;
   display: flex;
+  border-top:2px solid #fff;
   .user-bg {
     width: 1.38rem;
     height: 1.38rem;

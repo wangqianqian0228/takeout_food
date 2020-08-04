@@ -10,7 +10,10 @@ Vue.use(VueRouter)
   const routeOption = [
   {
     path:'/home',
-    name:'Home'
+    name:'Home',
+    meta:{
+      showFooter:true
+    }
   },
   {
     path:'/',
@@ -19,19 +22,31 @@ Vue.use(VueRouter)
   },
   {
     path:'/search',
-    name:'Search'
+    name:'Search',
+    meta:{
+      showFooter:true
+    }
   },
   {
     path:'/order',
     name: "Order",
+    meta:{
+      showFooter:true
+    }
   },
   {
     path:'/personal',
     name: "Personal",
+    meta:{
+      showFooter:true
+    }
   },
   {
     path:'/login',
     name: "Login",
+    meta:{
+      showFooter:false
+    }
   },
   
   
@@ -46,11 +61,11 @@ const routes = routeOption.map((route) => {
 // console.log(routes)
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
-// console.log(router);
+//  console.log(router);
 // const originalPush = VueRouter.prototype.push
 // VueRouter.prototype.push = function push(location) {
 //     return originalPush.call(this, location).catch(err => err)

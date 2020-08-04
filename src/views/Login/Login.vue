@@ -1,6 +1,7 @@
 <!-- 登录组件 -->
 <template>
   <div class="login">
+    <i class="iconfont iconzuojiantou" @click='$router.back()'></i>
     <h1>美团外卖</h1>
     <div class="tab-box">
       <mt-navbar v-model="selected">
@@ -64,6 +65,14 @@ export default {
   width: 6rem;
   margin: 1.2rem auto;
   margin-bottom: 0;
+  position: relative;
+  .iconzuojiantou{
+    position: absolute;
+    top: -43px;
+    left: -28px;
+    font-size: .74rem;
+  }  
+  
   h1 {
     font-size: 40px;
     font-weight: bold;
@@ -103,6 +112,7 @@ export default {
       position: relative;
       &:focus {
         outline: 1px solid #02a774;
+        
       }
     }
     a {

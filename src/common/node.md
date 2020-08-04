@@ -5,10 +5,12 @@
    - <router-link>
    - <router-view>
    -  <keep-alive>
-   -  $route
+   -  $route：当前路由信息
+      ![](../common/noteImgs/2.png)
+  
    -  $router
 > 有类似的结构可以设置成组件
-3. 在app组件引入FooterGuide组件，
+1. 在app组件引入FooterGuide组件，
    1.1 先导入 `import FooterGuide from '@/components/FooterGuide/FooterGuide'`
    1.2 定义为组件
    ```js
@@ -19,7 +21,7 @@
     }
    ```
    1.3 引用组件 `<FooterGuide></FooterGuide>`
-4. 完成FooterGuide组件
+2. 完成FooterGuide组件
    
 ### 采用rem布局样式
 1. 先安装 安装 flexible和 postcss-px2rem（命令行安装）
@@ -100,11 +102,22 @@ push一个地址，就会向在history栈中添加一个记录，点击浏览器
 ### 点击切换路由
 ```js
 @click="goto('/personal')"
+@click='$router.back()'
+//返回上一级
 
 goto(paths) {
       this.$router.replace(paths);
     },
 ```
+$route:当前路由，包含当前路由信息：
+  {
+    path:'/home',
+    name:'Home',
+    meta:{
+
+    }
+
+  },
 
 ### 使用的是同一款组件，但是可以根据作用域插槽来控制组件内部的元素是否显示
 在Home组件中，使用作用域插槽的形式占位，在各自的组件中，采用slot="xxx",与子组件中的`<slot name = 'search_left'></slot>`name属性值要一致。
@@ -162,6 +175,9 @@ Object.keys(comsOption).forEach(item => {
   Vue.component(comsOption[item].name, comsOption[item]);
 })
 ```
+comsOption中的内容：
+
+![](../common/noteImgs/1.png)
 ```js
 // 导入路由
 Vue.use(VueRouter)
@@ -202,3 +218,4 @@ const routes = routeOption.map((route) => {
    return routeItem
 })
 ```
+### 使某些页面不显示底部组件
