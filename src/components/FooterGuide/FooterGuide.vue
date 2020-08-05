@@ -72,6 +72,7 @@ export default {
 <style lang="less">
 .clicked_color {
   color: #02a774;
+  
 }
 .footer_guide {
   // position: fixed;

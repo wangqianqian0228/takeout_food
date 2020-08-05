@@ -1,3 +1,4 @@
+
 <template>
   <div id="app">
     <!-- <router-link to="/home">首页</router-link> -->
@@ -18,6 +19,7 @@ export default {
     window.onhashchange=function(){
       console.log(location.hash);
     }
+
   },
 };
 </script>
