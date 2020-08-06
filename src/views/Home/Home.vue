@@ -5,8 +5,8 @@
       <span class="search" slot="search_left">
         <i class="iconfont iconsousuo"></i>
       </span>
-      <span class="address ellipsis">
-        {{ title }}
+      <span class="address ellipsis" >
+        {{address.name}}
       </span>
       <span class="login-register" slot="login_right">登录|注册</span>
     </Header>
@@ -129,6 +129,8 @@
 import Header from "../../components/Header/Header";
 import ShopList from "../../components/ShopList/ShopList";
 import Swiper from "../../assets/swiper";
+import {mapState} from 'vuex'
+
 export default {
   data() {
     return {
@@ -141,7 +143,9 @@ export default {
     ShopList,
   },
 
-  computed: {},
+  computed: {
+    ...mapState(['address'])
+  },
 
   mounted() {
     this.$nextTick(() => {
