@@ -29,7 +29,7 @@ let comsOption = {
   Field,
   Switch
 }
-console.log(Object.keys(comsOption))
+// console.log(Object.keys(comsOption))
 Object.keys(comsOption).forEach(item => {
   Vue.component(comsOption[item].name, comsOption[item]);
 })
@@ -46,10 +46,9 @@ Object.keys(comsOption).forEach(item => {
 Vue.prototype.$toast = Toast;
 import 'mint-ui/lib/style.css'
 
-
 Vue.config.productionTip = false
 new Vue({
-  router,
-  store,
+  router,//使用上vue-router
+  store,//使用上vuex
   render: h => h(App)
 }).$mount('#app')

@@ -219,3 +219,34 @@ const routes = routeOption.map((route) => {
 })
 ```
 ### 使某些页面不显示底部组件
+### 配置请求代理
+    1. 创建api文件夹，里面存放ajax请求函数ajax.js(一般公司提供)和接口请求函数index.js(自己配置)
+    2. 在index.js中，
+       ```js
+       import ajax from './ajax'
+       const BASE_URL='/api'
+       //配置用户代理参数
+       ```
+    3. 在vue.config.js中，配置匹配规则
+      ```js
+      module.exports = {
+          devServer: {
+              proxy: {
+                  '/api': {
+                      //要访问的跨域的域名
+                      target: 'http://localhost:3000',
+                      ws: true,
+                      secure: false, 
+                      // 使用的是http协议则设置为false，https协议则设置为true
+                      changOrigin: true, //开启代理
+                      //  相当于请求遇见 /api 才做代理，但真实的请求中没有/api，
+                      // 所以在pathRewrite中把 /api 去掉, 这样既有了标识, 又能在请求接口中把 /api 去掉。
+                      pathRewrite: {
+                          // pathRewrite：如果不写则只能修改代理的域名，如果写则可以修改代理的域名和后边的路径。
+                          '^/api': ''
+                      }
+                  }
+              }
+          }
+      }
+      ```

@@ -1,4 +1,3 @@
-
 <template>
   <div id="app">
     <!-- <router-link to="/home">首页</router-link> -->
@@ -15,11 +14,8 @@ export default {
   components: {
     FooterGuide,
   },
-  mounted() {
-    window.onhashchange=function(){
-      console.log(location.hash);
-    }
-
+   mounted() {
+    this.$store.dispatch('getAddress', {})
   },
 };
 </script>
