@@ -7,30 +7,30 @@
 </head>
 <body>
     <script>
-    // Number.prototype.add = function(n){
-    //   return this+n
-    // }
-    // Number.prototype.minus = function(m){
-    //   return this-m
-    // }
-    // const result = (5).add(3).minus(2)
-    // console.log(result);
+    Number.prototype.add = function(n){
+      return this+n
+    }
+    Number.prototype.minus = function(m){
+      return this-m
+    }
+    const result = (5).add(3).minus(2)
+    console.log(result);
 
-    // 模拟实现new操作符
-    // function myNew(constructor,...rest){
-    //   console.log(constructor);
-    //   console.log(...rest);
-    // }
-    // function Fun(name,sex){
-    //      this.name = name;
-    //      this.sex = sex;
-    // }
-    // Fun.prototype.getUserInfo = function(){
-    //     return `我的姓名${this.name},我的性别${this.sex}`
-    // }
-    // // const fun = myNew(Fun,'子君','男')
-    // myNew(Fun,'子君','男');
-    // console.log(fun.getUserInfo());
+    模拟实现new操作符
+    function myNew(constructor,...rest){
+      console.log(constructor);
+      console.log(...rest);
+    }
+    function Fun(name,sex){
+         this.name = name;
+         this.sex = sex;
+    }
+    Fun.prototype.getUserInfo = function(){
+        return `我的姓名${this.name},我的性别${this.sex}`
+    }
+    // const fun = myNew(Fun,'子君','男')
+    myNew(Fun,'子君','男');
+    console.log(fun.getUserInfo());
     </script>
 </body>
 </html>
