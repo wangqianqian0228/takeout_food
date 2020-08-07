@@ -1,4 +1,4 @@
-// 将mutation-type中的变量引入过来
+// 将mutation-type中的变量引入过来111
 import {
     RECEIVE_ADDRESS,
     RECEIVE_CATEGORYS,
