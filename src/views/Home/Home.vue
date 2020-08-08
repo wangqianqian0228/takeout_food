@@ -5,8 +5,8 @@
       <span class="search" slot="search_left">
         <i class="iconfont iconsousuo"></i>
       </span>
-      <span class="address ellipsis" >
-        {{address.name}}
+      <span class="address ellipsis">
+        {{ address.name }}
       </span>
       <span class="login-register" slot="login_right">登录|注册</span>
     </Header>
@@ -14,14 +14,14 @@
       <nav class="home-nav">
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <a href="javascript:;" class="link_to_food">
+            <div class="swiper-slide" v-for="(categorys,index) in categorysArr" :key="index">
+              <a href="javascript:;" class="link_to_food" v-for="(category,index) in categorys" :key="index">
                 <div class="food_container">
-                  <img src="./imgs/nav/15.jpeg" />
+                  <img src="./imgs/nav/15.jpeg"/>
                 </div>
-                <span>甜品饮品</span>
+                <span>{{category.title}}</span>
               </a>
-              <a href="javascript:;" class="link_to_food">
+              <!-- <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/4.jpg" />
                 </div>
@@ -62,9 +62,9 @@
                   <img src="./imgs/nav/10.jpg" />
                 </div>
                 <span>土豪推荐</span>
-              </a>
+              </a> -->
             </div>
-            <div class="swiper-slide">
+            <!-- <div class="swiper-slide">
               <a href="javascript:;" class="link_to_food">
                 <div class="food_container">
                   <img src="./imgs/nav/17.jpeg" />
@@ -113,7 +113,7 @@
                 </div>
                 <span>披萨意面</span>
               </a>
-            </div>
+            </div> -->
           </div>
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
@@ -121,7 +121,6 @@
       </nav>
       <ShopList></ShopList>
     </div>
-    
   </div>
 </template>
 
@@ -129,7 +128,7 @@
 import Header from "../../components/Header/Header";
 import ShopList from "../../components/ShopList/ShopList";
 import Swiper from "../../assets/swiper";
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 
 export default {
   data() {
@@ -144,7 +143,30 @@ export default {
   },
 
   computed: {
-    ...mapState(['address'])
+    ...mapState(["address", "categorys"]),
+    // 计算categorysArr的属性，根据一维数组转换成二维数组
+    categorysArr() {
+      // 解构赋值
+      const { categorys } = this;
+      // 准备空的二维数组
+      const arr = [];
+      // 准备空的一维数组
+      let minArr = [];
+      categorys.forEach((c) => {
+        if (minArr.length === 8) {
+          // 满8个的时候，又创建了一个数组，又推进去
+          // 主要思想，满8个的时候，就创建新数组，推到二维数组里面去。
+          minArr = [];
+        }
+        // 第一轮将空的一维数组推进空的二维数组里面，因为推的是地址，所以，可以向以为数组里面再推元素进去
+        if(minArr.length === 0){
+          arr.push(minArr)
+        }
+        minArr.push(c);
+      });
+      // 返回这个二维数组
+      return arr;
+    },
   },
 
   mounted() {
@@ -162,6 +184,8 @@ export default {
       });
     });
     // 页面元素加载完成，显示轮播
+    // 获取商品列表数据
+    this.$store.dispatch("getFoodsCategories");
   },
   methods: {},
 };
