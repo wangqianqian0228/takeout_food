@@ -8,7 +8,7 @@
     <div v-if="shops.length">
       <ul class="shop-list" v-for="(shop, index) in shops" :key="index">
         <li class="shop-bg">
-          <img :src="`${baseImgUrl}${shop.image_path}`" alt="" />
+          <img :src="`${baseImgUrl}`" alt="" />
         </li>
         <li class="shop-detail">
           <div class="list-name">
@@ -17,16 +17,7 @@
           </div>
           <div class="list-star">
             <span class="star">
-              <span
-                class="star-item"
-                v-for="(star, index) in parseInt(shop.rating)"
-                :key="index"
-              ></span>
-              <span
-                class="star-item half"
-                v-show="shop.rating - parseInt(shop.rating) < 1"
-              ></span>
-              <span class="star-item none"> </span>
+             <Star :score='shop.rating' :size='24'></Star>
               <span class="score">{{ shop.rating }}</span>
             </span>
             <span class="sale"> 月售{{ shop.recent_order_num }}单 </span>
@@ -56,14 +47,18 @@
 
 <script>
 import { mapState } from "vuex";
+// 导入Star组件
+import Star from '../Start/Star'
 export default {
   data() {
     return {
-      baseImgUrl: "http://cangdu.org:8001/img/",
+      baseImgUrl: "https://imgs.qunarzz.com/p/tts8/1808/8f/4c6dc42175b85902.jpg_r_390x260x95_8016ad7d.jpg",
     };
   },
 
-  components: {},
+  components: {
+    Star
+  },
 
   computed: {
     ...mapState(["shops"]),
@@ -122,19 +117,7 @@ export default {
         }
       }
     }
-    .star-item {
-      display: inline-block;
-      background: url(./imgs/stars/star24_on@2x.png);
-      background-size: 10px 10px;
-      width: 0.2rem;
-      height: 0.2rem;
-    }
-    .star-item.half {
-      background-image: url(./imgs/stars/star24_half@2x.png);
-    }
-    .star-item.none {
-      background-image: url(./imgs/stars/star24_off@2x.png);
-    }
+    
     .score {
       color: #ff6000;
       font-size: 10px;

@@ -274,3 +274,8 @@ const routes = routeOption.map((route) => {
           }
       }
       ```
+
+### 采用骨架屏占位
+主要思想：采用v-if 和v-else的思想，数据未拿到，就采用一张图片占位，有数据的时候显示正常数据，没数据的时候显示svg图片
+` <div class="swiper-container" v-if="categorys.length">...</div>`
+`<div v-else><img src="./imgs/nav/msite_back.svg" alt="back"></div>`

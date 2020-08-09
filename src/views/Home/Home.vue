@@ -1,7 +1,7 @@
 <!-- 首页组件111 -->
 <template>
   <div class="home">
-    <Header class="header-box">
+    <Header class="header-box" ref="header">
       <span class="search" slot="search_left">
         <i class="iconfont iconsousuo"></i>
       </span>
@@ -52,7 +52,11 @@ export default {
     Header,
     ShopList,
   },
-
+  created() {
+    this.$nextTick(()=>{
+      console.log(this.$refs.header)
+    })
+  },
   computed: {
     ...mapState(["address", "categorys"]),
     // 计算categorysArr的属性，根据一维数组转换成二维数组
