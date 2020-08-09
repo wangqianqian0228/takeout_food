@@ -143,7 +143,31 @@ Header组件中：
 1. 引入swipe.js:
    在进行移动端开发的时候，引用swiper.js的时候，引用的是swipe.js 6.0版本，引入过后，发现底部的分页器不能显示，也不能自动轮播，添加了相关属性，都不能解决，在github上查看，目前的swipe.js 6.0确实存在这个bug，最后只能卸载新版本，引用旧版本，（删除node_modules后，重新npm i）当时就是觉得旧版本可能会稳定一点，最后就解决了这个问题。
 2. 有关eslint相关错误，vue-cli3.0没有安装eslintignore,则自己创建文件，文件内容：`src/assets/`
-
+3. 根据后端返回来的数据是一维数组，要转换成长度为8的二维数组，进行轮播图的翻转数据，采用的是？
+```js
+ categorysArr() {
+      // 解构赋值
+      const { categorys } = this;
+      // 准备空的二维数组
+      const arr = [];
+      // 准备空的一维数组
+      let minArr = [];
+      categorys.forEach((c) => {
+        if (minArr.length === 8) {
+          // 满8个的时候，又创建了一个数组，又推进去
+          // 主要思想，满8个的时候，就创建新数组，推到二维数组里面去。
+          minArr = [];
+        }
+        // 第一轮将空的一维数组推进空的二维数组里面，因为推的是地址，所以，可以向以为数组里面再推元素进去
+        if(minArr.length === 0){
+          arr.push(minArr)
+        }
+        minArr.push(c);
+      });
+      // 返回这个二维数组
+      return arr;
+    },
+```
 ### 项目中用到的一些方法：
 `Object.keys()`:把一个对象转化成数组，这个数组是由对象的属性名所组成的数组。
 `arr.map()`:对数组的每一项进行处理加工，并返回一个新数组。

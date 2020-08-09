@@ -17,103 +17,12 @@
             <div class="swiper-slide" v-for="(categorys,index) in categorysArr" :key="index">
               <a href="javascript:;" class="link_to_food" v-for="(category,index) in categorys" :key="index">
                 <div class="food_container">
-                  <img src="./imgs/nav/10.jpeg"/>
+                  <img :src="`${baseImageUrl}${category.image_url}`"/>
+                  <!-- https://fuss10.elemecdn.com/2/35/696aa5cf9820adada9b11a3d14bf5jpeg.jpeg -->
                 </div>
                 <span>{{category.title}}</span>
               </a>
-              <!-- <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/4.jpg" />
-                </div>
-                <span>商超便利</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/13.jpg" />
-                </div>
-                <span>美食</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/9.jpg" />
-                </div>
-                <span>简餐</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/12.jpg" />
-                </div>
-                <span>新店特惠</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/16.jpeg" />
-                </div>
-                <span>准时达</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/6.jpg" />
-                </div>
-                <span>预订早餐</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/10.jpg" />
-                </div>
-                <span>土豪推荐</span>
-              </a> -->
             </div>
-            <!-- <div class="swiper-slide">
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/17.jpeg" />
-                </div>
-                <span>川湘菜</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/11.jpg" />
-                </div>
-                <span>麻辣烫</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/13.jpg" />
-                </div>
-                <span>包子粥店</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/19.jpeg" />
-                </div>
-                <span>鲜花蛋糕</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/20.jpeg" />
-                </div>
-                <span>日韩料理</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/14.jpg" />
-                </div>
-                <span>果蔬生鲜</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/21.jpeg" />
-                </div>
-                <span>汉堡薯条</span>
-              </a>
-              <a href="javascript:;" class="link_to_food">
-                <div class="food_container">
-                  <img src="./imgs/nav/8.jpg" />
-                </div>
-                <span>披萨意面</span>
-              </a>
-            </div> -->
           </div>
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
@@ -134,6 +43,7 @@ export default {
   data() {
     return {
       title: "昌平区北七家修正大厦(北清路北)",
+      baseImageUrl:'https://fuss10.elemecdn.com'
     };
   },
 
@@ -170,7 +80,16 @@ export default {
   },
 
   mounted() {
-    this.$nextTick(() => {
+    
+    // 发送请求获取商品列表数据
+    this.$store.dispatch("getFoodsCategories");
+    // 发送请求获取商家列表数据
+    this.$store.dispatch('getShops')
+  },
+  watch: {
+    categorys(){
+  // categorys一旦有数据，就等界面更新，立即调用$nextTick函数，创建轮播对象。
+      this.$nextTick(() => {
       new Swiper(".swiper-container", {
         loop: true, // 循环模式选项
         // 如果需要分页器
@@ -184,8 +103,8 @@ export default {
       });
     });
     // 页面元素加载完成，显示轮播
-    // 获取商品列表数据
-    this.$store.dispatch("getFoodsCategories");
+
+    }
   },
   methods: {},
 };
