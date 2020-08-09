@@ -12,7 +12,7 @@
     </Header>
     <div class="content">
       <nav class="home-nav">
-        <div class="swiper-container">
+        <div class="swiper-container" v-if="categorys.length">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(categorys,index) in categorysArr" :key="index">
               <a href="javascript:;" class="link_to_food" v-for="(category,index) in categorys" :key="index">
@@ -27,6 +27,7 @@
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
         </div>
+        <div v-else><img src="./imgs/nav/msite_back.svg" alt="back"></div>
       </nav>
       <ShopList></ShopList>
     </div>
