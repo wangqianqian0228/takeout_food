@@ -279,3 +279,36 @@ const routes = routeOption.map((route) => {
 主要思想：采用v-if 和v-else的思想，数据未拿到，就采用一张图片占位，有数据的时候显示正常数据，没数据的时候显示svg图片
 ` <div class="swiper-container" v-if="categorys.length">...</div>`
 `<div v-else><img src="./imgs/nav/msite_back.svg" alt="back"></div>`
+### 获取验证码的字体颜色，手机号正则判断正确，则显示这个类，可以用计算属性来做。
+` <a href="javascript:;" :class="{'get-verification':rightPhone}" >获取验证码</a>`
+```js
+computed: {
+    rightPhone(){
+      return /^1[3|4|5|7|8][0-9]{9}$/.test(this.phone)
+    }
+  },
+```
+
+### 发送短信倒计时注意：
+在一轮定时器没有完的时候，是不能再执行这个定时器的,所以前提需要判断这个定时器存不存在。把这个定时器挂载到vue全局上。
+```js
+// 点击按钮
+    getVerify(e) {
+      // this.timer存在的时候，直接退出函数，不执行以后的代码
+      // this.timer不存在的时候，相当于没有定时器，点击按钮有效
+      if(this.timer){
+        return
+      }
+      let num = 20;
+      this.timer = setInterval(() => {
+        num--;
+        if (num < 0) { 
+        clearInterval(this.timer);
+        e.target.innerHTML = `获取验证码`;
+          return;
+        }
+        e.target.innerHTML = `已发送${num}s`;
+      }, 1000);
+    },
+  },
+```

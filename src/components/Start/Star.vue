@@ -14,6 +14,7 @@
 <script>
 export default {
   // 需要由别的组件传过来的值，有评分和图的大小
+  // 父组件向子组件传值，子组件这边使用props来进行接收
   props: {
     score: Number,
     size: Number,
@@ -25,6 +26,7 @@ export default {
   components: {},
 
   computed: {
+    // 主要是能根据例子来推算出有几个on，几个half，几个off
     //   比如说，这个sc=['on','on','on','half','off']
     // 具体多少个他是根据分数来计算，进而推进去的。
     starClass() {

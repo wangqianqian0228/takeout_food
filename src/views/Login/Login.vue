@@ -1,7 +1,7 @@
 <!-- 登录组件 -->
 <template>
   <div class="login">
-    <i class="iconfont iconzuojiantou" @click='$router.back()'></i>
+    <i class="iconfont iconzuojiantou" @click="$router.back()"></i>
     <h1>美团外卖</h1>
     <div class="tab-box">
       <mt-navbar v-model="selected">
@@ -10,9 +10,20 @@
       </mt-navbar>
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1" class="tab-container">
-          <input type="text" placeholder="手机号" />
+          <input type="text" placeholder="手机号" v-model="phone" />
           <input type="text" placeholder="密码" />
-          <a href="javascript:;">获取验证码</a>
+          <!-- rightPhone的值为true还是false，可看手机号的验证是否正确，正则会返回一个true或者false，可将这个作为rightPhone的值，用计算属性 -->
+          <button
+            href="javascript:;"
+            class="verify"
+            :class="{ 'get-verification': rightPhone }"
+            :disabled="!rightPhone"
+            @click="getVerify"
+          >
+            获取验证码
+          </button>
+
+          <!-- <button>获取验证码</button> -->
           <p class="tips">
             温馨提示：未注册硅谷外卖帐号的手机号，登录时将自动注册，且代表已同意
             <span>《用户服务协议》</span>
@@ -23,8 +34,8 @@
         <mt-tab-container-item id="2" class="tab-container password">
           <input type="text" placeholder="手机/邮箱/用户名" />
           <div>
-            <input type="password" placeholder="密码" />
-            <mt-switch v-model="value" class="switch"></mt-switch>
+            <input :type="this.value?'text':'password'" placeholder="密码" v-model="password"/>
+            <mt-switch  class="switch" v-model="value" ></mt-switch>
           </div>
 
           <input type="text" placeholder="验证码" />
@@ -43,12 +54,23 @@ export default {
       selected: "1",
       isShow: false,
       username: "",
+      phone: "",
+      isDisabled: true,
+      timer:'',
+      value:false,
+      // 密码
+      password:''
     };
   },
 
   components: {},
 
-  computed: {},
+  computed: {
+    // 结果为true或者false
+    rightPhone() {
+      return /^1[3|4|5|7|8][0-9]{9}$/.test(this.phone);
+    },
+  },
 
   mounted() {},
 
@@ -57,6 +79,25 @@ export default {
       console.log(111);
       this.isShow = true;
     },
+    // 点击按钮
+    getVerify(e) {
+      // this.timer存在的时候，直接退出函数，不执行以后的代码
+      // this.timer不存在的时候，相当于没有定时器，点击按钮有效
+      if(this.timer){
+        return
+      }
+      let num = 20;
+      this.timer = setInterval(() => {
+        num--;
+        if (num < 0) { 
+        clearInterval(this.timer);
+        e.target.innerHTML = `获取验证码`;
+          return;
+        }
+        e.target.innerHTML = `已发送${num}s`;
+      }, 1000);
+    },
+    
   },
 };
 </script>
@@ -66,13 +107,13 @@ export default {
   margin: 1.2rem auto;
   margin-bottom: 0;
   position: relative;
-  .iconzuojiantou{
+  .iconzuojiantou {
     position: absolute;
     top: -43px;
     left: -28px;
-    font-size: .74rem;
-  }  
-  
+    font-size: 0.74rem;
+  }
+
   h1 {
     font-size: 40px;
     font-weight: bold;
@@ -112,13 +153,25 @@ export default {
       position: relative;
       &:focus {
         outline: 1px solid #02a774;
-        
       }
     }
-    a {
+    .verify {
       position: absolute;
-      top: 0.34rem;
+      height: .96rem;
+      line-height: .96rem;
+      top: 0;
       right: 0.16rem;
+      background-color: transparent;
+      border: none;
+      color: #999;
+      font-size: 0.28rem;
+      padding: 0;
+      &.get-verification {
+        color: #000;
+      }
+      &:focus {
+        outline: none;
+      }
     }
     .tips {
       color: #999;
@@ -144,11 +197,10 @@ export default {
     .login-btn {
       margin-top: 0.3rem;
     }
-    .switch{
+    .switch {
       position: absolute;
       top: 1.42rem;
-      right: .38rem;
-      
+      right: 0.38rem;
     }
   }
 }

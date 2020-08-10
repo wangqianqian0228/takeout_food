@@ -53,9 +53,7 @@ export default {
     ShopList,
   },
   created() {
-    this.$nextTick(()=>{
-      console.log(this.$refs.header)
-    })
+    
   },
   computed: {
     ...mapState(["address", "categorys"]),
