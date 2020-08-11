@@ -47,6 +47,7 @@
               src="http://localhost:3000/captcha"
               alt=""
               @click="getCaptcha"
+              ref="captcha"
             />
           </div>
           <mt-button type="primary" class="login-btn">登录</mt-button>
@@ -133,7 +134,7 @@ export default {
         // 短信验证码登录
         const { phone, code } = this;
         const result = await phoneLogin(phone, code);
-        if (result.id === 1) {
+        if (result.code === 1) {
           this.$toast({ message: `${result.msg}` });
           clearInterval(this.timer);
         } else {
@@ -163,8 +164,9 @@ export default {
         }
         const { name, pwd, captcha } = this;
         const result = await loginUser({ name, pwd, captcha });
-        if (result.id === 1) {
+        if (result.code === 1) {
           this.$toast({ message: `${result.msg}` });
+          this.getCaptcha();
         } else {
           // 将result.data存放到state中
           // 返回个人中心界面
@@ -175,9 +177,9 @@ export default {
       }
     },
     // 点击更换验证码图片
-    getCaptcha(event) {
+    getCaptcha() {
       // console.log(Date.now()) 获取现在的时间
-      event.target.src = `http://localhost:3000/captcha/?time=${Date.now()}`;
+      this.$refs.captcha.src = `http://localhost:3000/captcha/?time=${Date.now()}`;
       // 路径点击一次不发生改变，是不会发送请求的，所以要保证每次点击时候的路径不一样
     },
   },
