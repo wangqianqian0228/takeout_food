@@ -14,6 +14,7 @@
           <input type="text" placeholder="密码" v-model="code" />
           <!-- rightPhone的值为true还是false，可看手机号的验证是否正确，正则会返回一个true或者false，可将这个作为rightPhone的值，用计算属性 -->
           <button
+            type="button"
             class="verify"
             :class="{ 'get-verification': rightPhone }"
             :disabled="!rightPhone"
@@ -60,8 +61,8 @@
 // 在login组件中发送请求，而不是在actions.js中发送请求
 import {
   sendcaptcha, //发送短信验证码
-  // phoneLogin,//手机号验证码登陆
-  // loginUser//用户名密码登录
+  phoneLogin, //手机号验证码登陆
+  loginUser, //用户名密码登录
 } from "../../api/index";
 export default {
   data() {
@@ -93,10 +94,11 @@ export default {
     async getVerify(e) {
       // this.timer存在的时候，直接退出函数，不执行以后的代码
       // this.timer不存在的时候，相当于没有定时器，点击按钮有效
+
       if (this.timer) {
         return;
       }
-      let num = 20;
+      let num = 30;
       this.timer = setInterval(() => {
         num--;
         if (num < 0) {
@@ -111,12 +113,12 @@ export default {
       // console.log(result);
       if (result.code === 1) {
         this.$toast({ message: `${result.msg}` });
-        clearInterval(this.timer)
+        clearInterval(this.timer);
       } else {
         this.$toast({ message: `发送成功` });
       }
     },
-    login() {
+    async login() {
       // 进行表单信息的预验证
       if (this.selected == 1) {
         //  处于短信验证码tab
@@ -124,27 +126,51 @@ export default {
           this.$messageBox({
             message: "电话号码输入不正确，请重新输入！",
           });
+          return;
         }
-        // if (!/^\d{6}$/.test(this.code)) {
-        //   this.$messageBox({
-        //     message: "验证码输入不正确，请重新输入！",
-        //   });
-        // }
+        // 没有手机号码错误的话，点击按钮预验证一条不通过，都不会执行发送异步请求
+        // 所以，只有预验证通过了，才会发送登录请求
+        // 短信验证码登录
+        const { phone, code } = this;
+        const result = await phoneLogin(phone, code);
+        if (result.id === 1) {
+          this.$toast({ message: `${result.msg}` });
+          clearInterval(this.timer);
+        } else {
+          // 将result.data存放到state中
+          // 返回个人中心界面
+          this.$toast({ message: `登录成功` });
+          this.$router.replace("/personal");
+        }
       } else {
         if (!this.name) {
           this.$messageBox({
             message: "请输入用户名！",
           });
+          return;
         }
         if (!this.pwd) {
           this.$messageBox({
             message: "请输入密码！",
           });
+          return;
         }
         if (!this.captcha) {
           this.$messageBox({
             message: "请输入验证码！",
           });
+          return;
+        }
+        const { name, pwd, captcha } = this;
+        const result = await loginUser({ name, pwd, captcha });
+        if (result.id === 1) {
+          this.$toast({ message: `${result.msg}` });
+        } else {
+          // 将result.data存放到state中
+          // 返回个人中心界面
+          this.$toast({ message: `登录成功` });
+          this.$router.replace("/personal");
+          console.log(result);
         }
       }
     },

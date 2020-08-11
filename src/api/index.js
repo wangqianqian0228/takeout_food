@@ -12,7 +12,7 @@ export const reqGeoShops = (latitude,longitude)=>ajax(`${BASE_URL}/shops`,{latit
 // [4、根据经纬度和关键字搜索商铺列表](#4根据经纬度和关键字搜索商铺列表)<br/>
 export const keyWordsShops =(geohash,keyword)=>ajax(`/search_shops`,{geohash,keyword})
 // [6、用户名密码登陆](#6用户名密码登陆)<br/>
-export const loginUser =({name,pwd,captcha})=>ajax(`/login_pwd`,{name,pwd,captcha},'POST')
+export const loginUser =({name,pwd,captcha})=>ajax(`${BASE_URL}/login_pwd`,{name,pwd,captcha},'POST')
 
 // [7、发送短信验证码](#7发送短信验证码)<br/>
 export const sendcaptcha = (phone)=>ajax(`${BASE_URL}/sendcode`,{phone})

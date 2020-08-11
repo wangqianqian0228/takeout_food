@@ -46,7 +46,7 @@ export default {
       while (sc.length < 5) {
         sc.push("off");
       }
-      console.log(sc);
+      // console.log(sc);
       return sc;
     },
   },
