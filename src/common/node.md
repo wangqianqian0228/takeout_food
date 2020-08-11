@@ -312,3 +312,17 @@ computed: {
     },
   },
 ```
+`<form class="tab-box" @submit.prevent='login'>`:form表单提交login事件，在提交之前，可做表单的预校验操作。
+
+### 点击更换图片验证码
+```js
+// 点击更换验证码图片
+    getCaptcha(event){
+      // console.log(Date.now()) 获取现在的时间
+      // http://localhost:3000/captcha 返回的就是一张图片路径
+      event.target.src=`http://localhost:3000/captcha/?time=${Date.now()}`
+      // 路径点击一次不发生改变，是不会发送请求的，所以要保证每次点击时候的路径不一样
+    }
+```
+
+当需要在页面中或者是form标签中放置一个button按钮的时候，如果这个按钮不是做提交表单的，切记一定要设置其的属性type="button"。否则，给button一个点击事件的时候，它会自动将type="button"，自动提交表单。

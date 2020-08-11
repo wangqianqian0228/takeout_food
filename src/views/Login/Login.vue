@@ -3,7 +3,7 @@
   <div class="login">
     <i class="iconfont iconzuojiantou" @click="$router.back()"></i>
     <h1>美团外卖</h1>
-    <div class="tab-box">
+    <form class="tab-box" @submit.prevent="login">
       <mt-navbar v-model="selected">
         <mt-tab-item id="1">短信登录</mt-tab-item>
         <mt-tab-item id="2">密码登录</mt-tab-item>
@@ -11,10 +11,9 @@
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1" class="tab-container">
           <input type="text" placeholder="手机号" v-model="phone" />
-          <input type="text" placeholder="密码" />
+          <input type="text" placeholder="密码" v-model="code" />
           <!-- rightPhone的值为true还是false，可看手机号的验证是否正确，正则会返回一个true或者false，可将这个作为rightPhone的值，用计算属性 -->
           <button
-            href="javascript:;"
             class="verify"
             :class="{ 'get-verification': rightPhone }"
             :disabled="!rightPhone"
@@ -32,34 +31,49 @@
           <div class="about-us">关于我们</div>
         </mt-tab-container-item>
         <mt-tab-container-item id="2" class="tab-container password">
-          <input type="text" placeholder="手机/邮箱/用户名" />
+          <input type="text" placeholder="手机/邮箱/用户名" v-model="name" />
           <div>
-            <input :type="this.value?'text':'password'" placeholder="密码" v-model="password"/>
-            <mt-switch  class="switch" v-model="value" ></mt-switch>
+            <input
+              :type="this.value ? 'text' : 'password'"
+              placeholder="密码"
+              v-model="pwd"
+            />
+            <mt-switch class="switch" v-model="value"></mt-switch>
           </div>
-
-          <input type="text" placeholder="验证码" />
+          <div class="captcha-box">
+            <input type="text" placeholder="验证码" v-model="captcha" />
+            <img
+              src="http://localhost:3000/captcha"
+              alt=""
+              @click="getCaptcha"
+            />
+          </div>
           <mt-button type="primary" class="login-btn">登录</mt-button>
           <div class="about-us">关于我们</div>
         </mt-tab-container-item>
       </mt-tab-container>
-    </div>
+    </form>
   </div>
 </template>
 
 <script>
+// 在login组件中发送请求，而不是在actions.js中发送请求
+import {
+  sendcaptcha, //发送短信验证码
+  // phoneLogin,//手机号验证码登陆
+  // loginUser//用户名密码登录
+} from "../../api/index";
 export default {
   data() {
     return {
-      selected: "1",
-      isShow: false,
-      username: "",
-      phone: "",
-      isDisabled: true,
-      timer:'',
-      value:false,
-      // 密码
-      password:''
+      selected: "1", //默认选择哪个tab栏
+      phone: "", //手机号
+      code: "", //短信验证码
+      timer: "", //获取验证码的定时器
+      value: false, //密码登录时的切换开关的值
+      name: "", //用户名
+      pwd: "", //密码登录的密码
+      captcha: "", //图片验证码
     };
   },
 
@@ -75,29 +89,71 @@ export default {
   mounted() {},
 
   methods: {
-    focuson() {
-      console.log(111);
-      this.isShow = true;
-    },
     // 点击按钮
-    getVerify(e) {
+    async getVerify(e) {
       // this.timer存在的时候，直接退出函数，不执行以后的代码
       // this.timer不存在的时候，相当于没有定时器，点击按钮有效
-      if(this.timer){
-        return
+      if (this.timer) {
+        return;
       }
       let num = 20;
       this.timer = setInterval(() => {
         num--;
-        if (num < 0) { 
-        clearInterval(this.timer);
-        e.target.innerHTML = `获取验证码`;
+        if (num < 0) {
+          clearInterval(this.timer);
+          e.target.innerHTML = `获取验证码`;
           return;
         }
         e.target.innerHTML = `已发送${num}s`;
       }, 1000);
+      // 向后端发送ajax请求
+      const result = await sendcaptcha(this.phone);
+      // console.log(result);
+      if (result.code === 1) {
+        this.$toast({ message: `${result.msg}` });
+        clearInterval(this.timer)
+      } else {
+        this.$toast({ message: `发送成功` });
+      }
     },
-    
+    login() {
+      // 进行表单信息的预验证
+      if (this.selected == 1) {
+        //  处于短信验证码tab
+        if (!this.rightPhone) {
+          this.$messageBox({
+            message: "电话号码输入不正确，请重新输入！",
+          });
+        }
+        // if (!/^\d{6}$/.test(this.code)) {
+        //   this.$messageBox({
+        //     message: "验证码输入不正确，请重新输入！",
+        //   });
+        // }
+      } else {
+        if (!this.name) {
+          this.$messageBox({
+            message: "请输入用户名！",
+          });
+        }
+        if (!this.pwd) {
+          this.$messageBox({
+            message: "请输入密码！",
+          });
+        }
+        if (!this.captcha) {
+          this.$messageBox({
+            message: "请输入验证码！",
+          });
+        }
+      }
+    },
+    // 点击更换验证码图片
+    getCaptcha(event) {
+      // console.log(Date.now()) 获取现在的时间
+      event.target.src = `http://localhost:3000/captcha/?time=${Date.now()}`;
+      // 路径点击一次不发生改变，是不会发送请求的，所以要保证每次点击时候的路径不一样
+    },
   },
 };
 </script>
@@ -157,8 +213,8 @@ export default {
     }
     .verify {
       position: absolute;
-      height: .96rem;
-      line-height: .96rem;
+      height: 0.96rem;
+      line-height: 0.96rem;
       top: 0;
       right: 0.16rem;
       background-color: transparent;
@@ -201,6 +257,15 @@ export default {
       position: absolute;
       top: 1.42rem;
       right: 0.38rem;
+    }
+  }
+  .captcha-box {
+    position: relative;
+    img {
+      height: 0.96rem;
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 }

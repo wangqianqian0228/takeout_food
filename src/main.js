@@ -16,7 +16,8 @@ import {
   TabContainer,
   TabContainerItem,
   Field,
-  Switch
+  Switch,
+  MessageBox
 } from 'mint-ui'
 
 let comsOption = {
@@ -27,7 +28,7 @@ let comsOption = {
   TabContainer,
   TabContainerItem,
   Field,
-  Switch
+  Switch,
 }
 // console.log(Object.keys(comsOption))
 Object.keys(comsOption).forEach(item => {
@@ -44,6 +45,8 @@ Object.keys(comsOption).forEach(item => {
 //Toast是方法，不同注册侧组件，应该是把这个对象挂载到 Vue.prototype上面。
 // Vue.component(Toast.name,Toast);
 Vue.prototype.$toast = Toast;
+Vue.prototype.$messageBox = MessageBox;
+
 import 'mint-ui/lib/style.css'
 
 Vue.config.productionTip = false

@@ -11,16 +11,14 @@ export const reqFoodsCategorys =()=>ajax(`${BASE_URL}/index_category`)
 export const reqGeoShops = (latitude,longitude)=>ajax(`${BASE_URL}/shops`,{latitude,longitude})
 // [4、根据经纬度和关键字搜索商铺列表](#4根据经纬度和关键字搜索商铺列表)<br/>
 export const keyWordsShops =(geohash,keyword)=>ajax(`/search_shops`,{geohash,keyword})
-// [5、获取一次性验证码](#5获取一次性验证码)<br/>
-export const getCaptcha =()=>ajax(`/captcha`)
 // [6、用户名密码登陆](#6用户名密码登陆)<br/>
-export const loginUser =(name,pwd,captcha)=>ajax(`/login_pwd`,{name,pwd,captcha},'POST')
+export const loginUser =({name,pwd,captcha})=>ajax(`/login_pwd`,{name,pwd,captcha},'POST')
 
 // [7、发送短信验证码](#7发送短信验证码)<br/>
-export const sendcaptcha = (phone)=>ajax(`/sendcode`,phone)
+export const sendcaptcha = (phone)=>ajax(`${BASE_URL}/sendcode`,{phone})
 // [8、手机号验证码登陆](#8手机号验证码登陆)<br/>
-export const phoneLogin =(phone,code)=>ajax(`/login_sms`,{phone,code},'POST')
+export const phoneLogin =(phone,code)=>ajax(`${BASE_URL}/login_sms`,{phone,code},'POST')
 // [9、根据会话获取用户信息](#9根据会话获取用户信息)<br/>
-export const reqUserInfo = ()=>ajax(`/userinfo`)
+export const reqUserInfo = ()=>ajax(`${BASE_URL}/userinfo`)
 // [10、用户登出](#10用户登出)<br/>
-export const UserLoginOut = ()=>ajax(`/logout`)
+export const UserLoginOut = ()=>ajax(`${BASE_URL}/logout`)
