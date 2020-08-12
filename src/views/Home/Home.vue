@@ -8,7 +8,7 @@
       <span class="address ellipsis">
         {{ address.name }}
       </span>
-      <span class="login-register" slot="login_right">登录|注册</span>
+      <span class="login-register" slot="login_right" @click="goto">{{userinfo._id?'已登录':'登录|注册'}}</span>
     </Header>
     <div class="content">
       <nav class="home-nav">
@@ -56,7 +56,7 @@ export default {
     
   },
   computed: {
-    ...mapState(["address", "categorys"]),
+    ...mapState(["address", "categorys",'userinfo']),
     // 计算categorysArr的属性，根据一维数组转换成二维数组
     categorysArr() {
       // 解构赋值
@@ -109,7 +109,11 @@ export default {
 
     }
   },
-  methods: {},
+  methods: {
+    goto(){
+      this.$router.push('/login')
+    }
+  },
 };
 </script>
 <style lang="less">
