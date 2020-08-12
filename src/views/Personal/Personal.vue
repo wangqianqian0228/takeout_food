@@ -9,23 +9,13 @@
     <router-link to="/login" class="user">
       <div class="user-bg"><i class="iconfont iconyonghu"></i></div>
       <div class="login-register">
-        <div class="title">登录/注册</div>
+        <div class="title" v-if="!userinfo.phone">{{userinfo.name||'登录/注册'}}</div>
         <div class="mobile">
           <i class="iconfont iconshouji54"></i>
-          <span>暂无绑定手机号</span>
+          <span>{{userinfo.phone||'暂无绑定手机号'}}</span>
         </div>
       </div>
     </router-link>
-    <!-- <div class="user">
-      <div class="user-bg"><i class="iconfont iconyonghu"></i></div>
-      <div class="login-register">
-        <div class="title">登录/注册</div>
-        <div class="mobile">
-          <i class="iconfont iconshouji54"></i>
-          <span>暂无绑定手机号</span>
-        </div>
-      </div>
-    </div> -->
     <div class="remaining">
       <div>
         <p><span class="common number">0.00</span>元</p>
@@ -52,6 +42,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import Header from "@/components/Header/Header";
 export default {
   data() {
@@ -64,7 +55,9 @@ export default {
     Header,
   },
 
-  computed: {},
+  computed: {
+    ...mapState(['userinfo'])
+  },
 
   mounted() {},
 

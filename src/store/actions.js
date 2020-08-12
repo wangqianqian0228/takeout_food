@@ -2,7 +2,8 @@
 import {
     RECEIVE_ADDRESS,
     RECEIVE_CATEGORYS,
-    RECEIVE_SHOPS
+    RECEIVE_SHOPS,
+    RECEIVE_USERINFO
 } from './mutation-types'
 // 导入接口函数
 import {
@@ -53,6 +54,11 @@ export default {
                 shops
             })
         }
+    },
+    // 同步记录用户信息
+    getUser({commit},userinfo){
+        // 不用发送ajax请求，只用存储信息
+        commit(RECEIVE_USERINFO,{userinfo})
     }
 
 }

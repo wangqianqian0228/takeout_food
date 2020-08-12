@@ -139,6 +139,8 @@ export default {
           clearInterval(this.timer);
         } else {
           // 将result.data存放到state中
+          const user = result.data;
+          this.$store.dispatch('getUser',user)
           // 返回个人中心界面
           this.$toast({ message: `登录成功` });
           this.$router.replace("/personal");
@@ -169,6 +171,8 @@ export default {
           this.getCaptcha();
         } else {
           // 将result.data存放到state中
+          const user = result.data;
+          this.$store.dispatch('getUser',user)
           // 返回个人中心界面
           this.$toast({ message: `登录成功` });
           this.$router.replace("/personal");
@@ -179,7 +183,14 @@ export default {
     // 点击更换验证码图片
     getCaptcha() {
       // console.log(Date.now()) 获取现在的时间
+
       this.$refs.captcha.src = `http://localhost:3000/captcha/?time=${Date.now()}`;
+      // var dom = document.getElementById('img_id')
+      // console.dir(this.$refs.captcha)
+      // console.log(dom.qqw)
+      // console.dir(this.$refs.captcha)
+      // console.log(this.$refs.captcha.qqw)
+      // console.log(this.$refs.captcha.getAttribute('qqw'))
       // 路径点击一次不发生改变，是不会发送请求的，所以要保证每次点击时候的路径不一样
     },
   },
