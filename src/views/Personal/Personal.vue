@@ -9,6 +9,7 @@
     <router-link to="/login" class="user">
       <div class="user-bg"><i class="iconfont iconyonghu"></i></div>
       <div class="login-register">
+        <!-- userinfo.phone有信息的话，直接不显示class="title"这个标签 -->
         <div class="title" v-if="!userinfo.phone">{{userinfo.name||'登录/注册'}}</div>
         <div class="mobile">
           <i class="iconfont iconshouji54"></i>
