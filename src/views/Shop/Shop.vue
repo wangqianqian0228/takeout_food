@@ -9,7 +9,7 @@
         <img src="../Shop/imgs/bg2.jpeg" alt="" class="shop-img" />
         <div class="title">
           <span class="brand">品牌</span>
-          <span class="name ellipsis">xxxxxxxxx</span>
+          <span class="name ellipsis">一心堂</span>
           <p class="quantity"></p>
         </div>
         <p class="coupon"></p>
