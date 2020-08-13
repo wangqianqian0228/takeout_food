@@ -6,7 +6,7 @@
       <span>附近商家</span>
     </div>
     <div v-if="shops.length">
-      <ul class="shop-list" v-for="(shop, index) in shops" :key="index">
+      <ul class="shop-list" v-for="(shop, index) in shops" :key="index" @click="$router.push('/shop')">
         <li class="shop-bg">
           <img :src="`${baseImgUrl}`" alt="" />
         </li>

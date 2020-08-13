@@ -5,65 +5,87 @@ import VueRouter from 'vue-router'
 // import Order from '../views/Order/Order.vue'
 // import Personal from '../views/Personal/Personal.vue'
 // import Login from '../views/Login/Login.vue'
-
+import ShopGoods from '../views/Shop/ShopGoods/ShopGoods.vue'
+import ShopComments from '../views/Shop/ShopComments/ShopComments.vue'
+import ShopDetails from '../views/Shop/ShopDetails/ShopDetails.vue'
 Vue.use(VueRouter)
-  const routeOption = [
-  {
-    path:'/home',
-    name:'Home',
-    meta:{
-      showFooter:true
+const routeOption = [{
+    path: '/home',
+    name: 'Home',
+    meta: {
+      showFooter: true
     }
   },
   {
-    path:'/',
-    redirect:'/home',
-    name:'Home'
+    path: '/',
+    redirect: '/home',
+    name: 'Home'
   },
   {
-    path:'/search',
-    name:'Search',
-    meta:{
-      showFooter:true
+    path: '/search',
+    name: 'Search',
+    meta: {
+      showFooter: true
     }
   },
   {
-    path:'/order',
+    path: '/order',
     name: "Order",
-    meta:{
-      showFooter:true
+    meta: {
+      showFooter: true
     }
   },
   {
-    path:'/personal',
+    path: '/personal',
     name: "Personal",
-    meta:{
-      showFooter:true
+    meta: {
+      showFooter: true
     }
   },
   {
-    path:'/login',
+    path: '/login',
     name: "Login",
-    meta:{
-      showFooter:false
+    meta: {
+      showFooter: false
     }
   },
   {
-    path:'/userinfo',
+    path: '/userinfo',
     name: "Userinfo",
-    meta:{
-      showFooter:false
+    meta: {
+      showFooter: false
     }
   },
-  
-  
+  {
+    path: '/shop',
+    name: 'Shop',
+    meta: {
+      showFooter: false
+    },
+    children: [{
+      path: '/shop/shopgoods',
+      name: 'ShopGoods',
+      component:ShopGoods
+    }, {
+      path: '/shop/shopcomments',
+      name: 'ShopComments',
+      component:ShopComments
+    }, {
+      path: '/shop/shopdetails',
+      name: 'ShopDetails',
+      component:ShopDetails
+
+    }]
+  }
+
+
 ]
 const routes = routeOption.map((route) => {
-   const routeItem = {
-      ...route,
-      component: () => import(`../views/${route.name}/${route.name}.vue`)
-   }
-   return routeItem
+  const routeItem = {
+    ...route,
+    component: () => import(`../views/${route.name}/${route.name}.vue`)
+  }
+  return routeItem
 })
 // console.log(routes)
 
