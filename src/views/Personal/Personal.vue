@@ -6,14 +6,16 @@
         {{ title }}
       </span>
     </Header>
-    <router-link to="/login" class="user">
+    <router-link :to="userinfo._id ? '/userinfo' : '/login'" class="user">
       <div class="user-bg"><i class="iconfont iconyonghu"></i></div>
       <div class="login-register">
         <!-- userinfo.phone有信息的话，直接不显示class="title"这个标签 -->
-        <div class="title" v-if="!userinfo.phone">{{userinfo.name||'登录/注册'}}</div>
+        <div class="title" v-if="!userinfo.phone">
+          {{ userinfo.name || "登录/注册" }}
+        </div>
         <div class="mobile">
           <i class="iconfont iconshouji54"></i>
-          <span>{{userinfo.phone||'暂无绑定手机号'}}</span>
+          <span>{{ userinfo.phone || "暂无绑定手机号" }}</span>
         </div>
       </div>
     </router-link>
@@ -27,23 +29,36 @@
         <p>我的优惠券</p>
       </div>
       <div>
-       <p><span class="common credits">0</span>元</p>
+        <p><span class="common credits">0</span>元</p>
         <p>我的积分</p>
       </div>
     </div>
     <div class="my-order">
       <ul>
-        <li class="list-item"><i class="iconfont iconwode-dingdan"></i><span>我的订单</span></li>
-        <li class="list-item"><i class="iconfont iconjifen"></i><span>积分商城</span></li>
-        <li class="list-item"><i class="iconfont iconhuiyuan"></i><span>美团外卖会员卡</span></li>
-        <li class="list-item"><i class="iconfont iconfuwuzhongxin"></i><span>服务中心</span></li>
+        <li class="list-item">
+          <i class="iconfont iconwode-dingdan"></i><span>我的订单</span>
+        </li>
+        <li class="list-item">
+          <i class="iconfont iconjifen"></i><span>积分商城</span>
+        </li>
+        <li class="list-item">
+          <i class="iconfont iconhuiyuan"></i><span>美团外卖会员卡</span>
+        </li>
+        <li class="list-item">
+          <i class="iconfont iconfuwuzhongxin"></i><span>服务中心</span>
+        </li>
       </ul>
+    </div>
+    <div class="logout">
+      <mt-button type="danger" size="large" v-if="userinfo._id" @click="logout"
+        >退出登录</mt-button
+      >
     </div>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 import Header from "@/components/Header/Header";
 export default {
   data() {
@@ -57,22 +72,36 @@ export default {
   },
 
   computed: {
-    ...mapState(['userinfo'])
+    ...mapState(["userinfo"]),
   },
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    // 退出登录
+    logout() {
+      this.$messageBox.confirm("确定执行此操作?").then(
+        () => {
+          // console.log("点击了确认");
+          // 发送登出请求
+          this.$store.dispatch('logOut')
+          this.$toast({ message: `成功退出` });
+        },
+        // 点击取消时的回调函数
+        ()=>{}
+      );
+    },
+  },
 };
 </script>
 <style lang="less">
-@icon-color:#02a774;
+@icon-color: #02a774;
 .user {
   height: 2rem;
   padding: 0.4rem 0.2rem;
   background: @icon-color;
   display: flex;
-  border-top:2px solid #fff;
+  border-top: 2px solid #fff;
   .user-bg {
     width: 1.38rem;
     height: 1.38rem;
@@ -135,59 +164,58 @@ export default {
     .coupon {
       color: #ff5f3e;
     }
-    .credits{
+    .credits {
       color: #6ac20b;
     }
   }
-  &:last-child{
+  &:last-child {
     border-right-color: transparent;
-
   }
 }
-.my-order{
- font-size: .32rem;
- color: #333;
- .iconfont{
-   font-size: .4rem;
-   margin-right: 10px;
- }
+.my-order {
+  font-size: 0.32rem;
+  color: #333;
+  .iconfont {
+    font-size: 0.4rem;
+    margin-right: 10px;
+  }
 }
-.list-item{
+.list-item {
   padding: 10px 8px;
   border-top: 1px solid #ddd;
   position: relative;
   &::after {
-      position: absolute;
-      right: 0.4rem;
-      top: 50%;
-      bottom: 50%;
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-top: 1px solid #bbb;
-      border-right: 1px solid #bbb;
-      transform: translateY(-50%) rotate(45deg);
-    }
-  &:last-child{
+    position: absolute;
+    right: 0.4rem;
+    top: 50%;
+    bottom: 50%;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  &:last-child {
     border-bottom: 1px solid #ddd;
-  
   }
 }
-.iconwode-dingdan{
+.iconwode-dingdan {
   color: @icon-color;
-  
 }
-.iconjifen.iconfont{
-  color:#ff5f3e;
-  font-size: .6rem;
-  margin-left: -.1rem;
+.iconjifen.iconfont {
+  color: #ff5f3e;
+  font-size: 0.6rem;
+  margin-left: -0.1rem;
   margin-right: 5px;
 }
-.iconhuiyuan{
+.iconhuiyuan {
   color: #f90;
 }
-.iconfuwuzhongxin{
+.iconfuwuzhongxin {
   color: @icon-color;
 }
-
+.logout {
+  margin-top: 0.5rem;
+}
 </style>

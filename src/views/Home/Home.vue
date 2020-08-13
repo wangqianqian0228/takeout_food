@@ -2,13 +2,13 @@
 <template>
   <div class="home">
     <Header class="header-box" ref="header">
-      <span class="search" slot="search_left">
+      <router-link class="search" slot="search_left" to="/search">
         <i class="iconfont iconsousuo"></i>
-      </span>
+      </router-link>
       <span class="address ellipsis">
         {{ address.name }}
       </span>
-      <span class="login-register" slot="login_right" @click="goto">{{userinfo._id?'已登录':'登录|注册'}}</span>
+      <router-link class="login-register" slot="login_right" :to="userinfo._id?'/userinfo':'/login'">{{userinfo._id?'已登录':'登录|注册'}}</router-link>
     </Header>
     <div class="content">
       <nav class="home-nav">
@@ -110,9 +110,7 @@ export default {
     }
   },
   methods: {
-    goto(){
-      this.$router.push('/login')
-    }
+    
   },
 };
 </script>
@@ -125,12 +123,11 @@ export default {
   // background-color: pink;
   .header-box {
     position: relative;
-    span {
+    
+    .address {
       position: absolute;
       line-height: 0.9rem;
       color: #fff;
-    }
-    .address {
       width: 50%;
       left: 0;
       right: 0;
@@ -140,11 +137,17 @@ export default {
       width: 0.9rem;
       top: 0;
       left: 0;
+      position: absolute;
+      line-height: 0.9rem;
+      color: #fff;
       i {
         font-size: 0.44rem;
       }
     }
     .login-register {
+      position: absolute;
+      line-height: 0.9rem;
+      color: #fff;
       bottom: 0;
       right: 0.2rem;
       font-size: 0.28rem;

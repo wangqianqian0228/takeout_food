@@ -48,6 +48,13 @@ Vue.use(VueRouter)
       showFooter:false
     }
   },
+  {
+    path:'/userinfo',
+    name: "Userinfo",
+    meta:{
+      showFooter:false
+    }
+  },
   
   
 ]
