@@ -39,7 +39,6 @@ export default {
 </script>
 <style lang="less">
 .header {
-  height: 3.08rem;
   .top {
     height: 1rem;
     background-image: url("../Shop/imgs/bg1.png");

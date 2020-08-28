@@ -1,4 +1,4 @@
-<!--  -->
+<!--商家列表  -->
 <template>
   <div class="home-list">
     <div class="near-shop">
