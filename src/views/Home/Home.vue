@@ -1,7 +1,7 @@
 <!-- 首页组件111 -->
 <template>
   <div class="home">
-    <Header ref="header" class="header-box address ellipsis" title="昌平区北七家修正大厦(北清路北)">
+    <Header ref="header" class="header-box " title="昌平区北七家修正大厦(北清路北)" classes='address ellipsis'>
       <router-link class="search" slot="search_left" to="/search">
         <i class="iconfont iconsousuo"></i>
       </router-link>
