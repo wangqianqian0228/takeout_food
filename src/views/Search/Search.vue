@@ -1,11 +1,8 @@
 <!-- 搜索组件 -->
 <template>
   <div>
-   <Header >
-     <span class="address ">
-       {{title}}
-      </span>
-   </Header>
+   <Header class="address " title="搜索">
+    </Header>
    <div class="search-box">
      <input type="text" placeholder="请输入商家名称" class="search-name">
      <input type="submit" value="提交" class="submit">

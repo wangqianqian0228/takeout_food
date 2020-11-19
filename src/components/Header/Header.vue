@@ -3,13 +3,17 @@
   <div class="header">
     <!-- 使用作用域插槽，别的组件引用的时候，你要写成什么形式，就写成什么形式 -->
     <slot name="search_left"></slot>
-    <slot></slot>  
+    <span>{{title}}</span>  
     <slot name="login_right"></slot>
   </div>
 </template>
 
 <script>
 export default {
+  // 父子组件传参
+  props:{
+     title:String
+  },
   data() {
     return {};
   },

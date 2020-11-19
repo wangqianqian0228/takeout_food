@@ -5,7 +5,7 @@
       href="javascript:;"
       class="guide_item"
       @click="goto('/home')"
-      :class="{ clicked_color:this.$route.path==='/home'  }"
+      :class="{ clicked_color:$route.path==='/home'  }"
     >
       <span class="item_icon">
         <i class="iconfont iconwaimai1"></i>
@@ -16,7 +16,7 @@
       href="javascript:;"
       class="guide_item"
       @click="goto('/search')"
-      :class="{ clicked_color: this.$route.path==='/search'}"
+      :class="{ clicked_color: $route.path==='/search'}"
     >
       <span class="item_icon">
         <i class="iconfont iconsousuo"></i>
@@ -27,7 +27,7 @@
       href="javascript:;"
       class="guide_item"
       @click="goto('/order')"
-      :class="{ clicked_color: this.$route.path==='/order' }"
+      :class="{ clicked_color:$route.path==='/order' }"
     >
       <span class="item_icon">
         <i class="iconfont iconorder"></i>
@@ -38,7 +38,7 @@
       href="javascript:;"
       class="guide_item"
       @click="goto('/personal')"
-      :class="{ clicked_color:  this.$route.path==='/personal'}"
+      :class="{ clicked_color:  $route.path==='/personal'}"
     >
       <span class="item_icon">
         <i class="iconfont iconmainoff"></i>
@@ -70,6 +70,7 @@ export default {
 };
 </script>
 <style lang="less">
+// 被激活时的样式
 .clicked_color {
   color: #02a774;
   

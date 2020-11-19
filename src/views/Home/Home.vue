@@ -1,13 +1,13 @@
 <!-- 首页组件111 -->
 <template>
   <div class="home">
-    <Header class="header-box" ref="header">
+    <Header ref="header" class="header-box address ellipsis" title="昌平区北七家修正大厦(北清路北)">
       <router-link class="search" slot="search_left" to="/search">
         <i class="iconfont iconsousuo"></i>
       </router-link>
-      <span class="address ellipsis">
+      <!-- <span class="address ellipsis">
         {{ address.name }}
-      </span>
+      </span> -->
       <router-link class="login-register" slot="login_right" :to="userinfo._id?'/userinfo':'/login'">{{userinfo._id?'已登录':'登录|注册'}}</router-link>
     </Header>
     <div class="content">
@@ -43,8 +43,8 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      title: "昌平区北七家修正大厦(北清路北)",
-      baseImageUrl:'https://fuss10.elemecdn.com'
+      // title: "",
+      // baseImageUrl:'https://fuss10.elemecdn.com'
     };
   },
 

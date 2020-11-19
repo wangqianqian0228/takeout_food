@@ -1,10 +1,7 @@
-<!-- 个人组件 -->
+<!-- 个人中心组件 -->
 <template>
   <div>
-    <Header>
-      <span class="address ">
-        {{ title }}
-      </span>
+    <Header class="address " title="我的">
     </Header>
     <router-link :to="userinfo._id ? '/userinfo' : '/login'" class="user">
       <div class="user-bg"><i class="iconfont iconyonghu"></i></div>
@@ -63,7 +60,7 @@ import Header from "@/components/Header/Header";
 export default {
   data() {
     return {
-      title: "我的",
+     
     };
   },
 
