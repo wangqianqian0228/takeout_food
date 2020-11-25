@@ -1,10 +1,7 @@
 <!-- 订单组件 -->
 <template>
   <div>
-    <Header>
-      <span class="address ">
-        {{ title }}
-      </span>
+    <Header class="address " title="订单列表">
     </Header>
     <div class="order-bg">
         <img src="./order/person.png" alt="" />
@@ -19,7 +16,7 @@ import Header from "@/components/Header/Header";
 export default {
   data() {
     return {
-      title: "订单列表",
+      
     };
   },
 

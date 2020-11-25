@@ -45,23 +45,16 @@ const routeOption = [{
   {
     path: '/login',
     name: "Login",
-    meta: {
-      showFooter: false
-    }
+  
   },
   {
     path: '/userinfo',
     name: "Userinfo",
-    meta: {
-      showFooter: false
-    }
+  
   },
   {
     path: '/shop',
     name: 'Shop',
-    meta: {
-      showFooter: false
-    },
     children: [{
       path: '/shop/shopgoods',
       name: 'ShopGoods',

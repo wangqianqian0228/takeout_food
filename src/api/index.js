@@ -4,6 +4,7 @@
 import ajax from './ajax'
 // const BASE_URL ='http://localhost:3000'
 const BASE_URL='/api'
+// 参数类型： param,放在路径一起
 export const reqAddress = (geohash)=>ajax(`${BASE_URL}/position/${geohash}`)
 // [2、获取食品分类列表](#2获取食品分类列表)<br/>
 export const reqFoodsCategorys =()=>ajax(`${BASE_URL}/index_category`)
@@ -11,6 +12,8 @@ export const reqFoodsCategorys =()=>ajax(`${BASE_URL}/index_category`)
 export const reqGeoShops = (latitude,longitude)=>ajax(`${BASE_URL}/shops`,{latitude,longitude})
 // [4、根据经纬度和关键字搜索商铺列表](#4根据经纬度和关键字搜索商铺列表)<br/>
 export const keyWordsShops =(geohash,keyword)=>ajax(`${BASE_URL}/search_shops`,{geohash,keyword})
+// 获取一次性验证
+
 // [6、用户名密码登陆](#6用户名密码登陆)<br/>
 export const loginUser =({name,pwd,captcha})=>ajax(`${BASE_URL}/login_pwd`,{name,pwd,captcha},'POST')
 

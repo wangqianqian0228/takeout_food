@@ -9,10 +9,12 @@
         <img src="../Shop/imgs/bg2.jpeg" alt="" class="shop-img" />
         <div class="title">
           <span class="brand">品牌</span>
-          <span class="name ellipsis">一心堂</span>
+          <span class="name ellipsis" @click='getlist'>一心堂</span>
           <p class="quantity"></p>
         </div>
-        <p class="coupon"></p>
+        <!-- <p class="coupon" v-for="(item,i) in arr" :key="i">
+          {{item}}
+        </p> -->
       </div>
     </div>
     <div class="tab"></div>
@@ -25,16 +27,36 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      // obj:[],
+      // arr:[],
+      // str:[],
+      // str1:[],
+      // obj1:['13658834047,默认情况下，下拉区域的高度是和内容高度保持一致的，如果需要让下拉区域始终为全屏，可以给设置一个与屏幕大小相等的最小高度'],
+      // obj2:['13888982512,随后，特朗普发推称，他感谢艾米莉墨菲对国家的奉献和忠诚，并称她受到了“威胁和骚扰”。'],
+      // obj3:['13769143343,我们的诉讼还在继续，我们会继续不懈努力。我相信我们会胜利！”特朗普在推文中写道']
+    };
   },
 
   components: {},
 
   computed: {},
 
-  mounted() {},
+  mounted() {
+  },
 
-  methods: {},
+  methods: {
+  //   getlist(){
+  //   this.obj = this.obj.concat(this.obj1,this.obj2,this.obj3)
+  //   this.obj.forEach(function(val,index){
+  //      var index = val.indexOf(',')
+  //     var str['index'] = val.slice(0,index)
+  //     this.str1 = val.slice(index)
+  //   })
+  //  console.log(str)
+  //  console.log(str2)
+  //   }
+  },
 };
 </script>
 <style lang="less">

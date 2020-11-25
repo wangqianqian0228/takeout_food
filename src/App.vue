@@ -4,7 +4,7 @@
     <div class="component-view">
       <router-view />
     </div>
-
+<!-- $route 当前路由-->
     <FooterGuide v-if="$route.meta.showFooter"></FooterGuide>
   </div>
 </template>
