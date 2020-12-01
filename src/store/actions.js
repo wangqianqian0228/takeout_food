@@ -28,6 +28,7 @@ export default {
         if (result.code === 0) {
             //  获取地址成功
             const address = result.data
+            console.log(address)
             commit(RECEIVE_ADDRESS, {
                 address
             })

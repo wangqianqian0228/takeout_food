@@ -8,7 +8,7 @@
     <div v-if="shops.length">
       <ul class="shop-list" v-for="(shop, index) in shops" :key="index" @click="$router.push('/shop')">
         <li class="shop-bg">
-          <img :src="`${baseImgUrl}`" alt="" />
+          <img :src="`${baseImgUrl}${shop.image_path}`" alt="" />
         </li>
         <li class="shop-detail">
           <div class="list-name">
@@ -52,7 +52,8 @@ import Star from '../Start/Star'
 export default {
   data() {
     return {
-      baseImgUrl: "https://imgs.qunarzz.com/p/tts8/1808/8f/4c6dc42175b85902.jpg_r_390x260x95_8016ad7d.jpg",
+      // baseImgUrl: "https://imgs.qunarzz.com/p/tts8/1808/8f/4c6dc42175b85902.jpg_r_390x260x95_8016ad7d.jpg",
+      baseImgUrl:"http://cangdu.org:8001/img/"
     };
   },
 
@@ -61,6 +62,7 @@ export default {
   },
 
   computed: {
+    // 商家列表数据
     ...mapState(["shops"]),
   },
 

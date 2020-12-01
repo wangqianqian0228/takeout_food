@@ -1,7 +1,7 @@
 <!-- 首页组件111 -->
 <template>
   <div class="home">
-    <Header ref="header" class="header-box " title="昌平区北七家修正大厦(北清路北)" classes='address ellipsis'>
+    <Header ref="header" class="header-box " :title="address.name" classes='address ellipsis'>
       <router-link class="search" slot="search_left" to="/search">
         <i class="iconfont iconsousuo"></i>
       </router-link>
@@ -12,6 +12,7 @@
     </Header>
     <div class="content">
       <nav class="home-nav">
+        <!-- 有数据才去显示，用条件v-if="categorys.length"去控制 -->
         <div class="swiper-container" v-if="categorys.length">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(categorys,index) in categorysArr" :key="index">
@@ -27,6 +28,7 @@
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
         </div>
+        <!-- 骨架屏占位 -->
         <div v-else><img src="./imgs/nav/msite_back.svg" alt="back"></div>
       </nav>
       <ShopList></ShopList>
@@ -44,7 +46,7 @@ export default {
   data() {
     return {
       // title: "",
-      // baseImageUrl:'https://fuss10.elemecdn.com'
+       baseImageUrl:'https://fuss10.elemecdn.com'
     };
   },
 
@@ -91,7 +93,8 @@ export default {
   },
   watch: {
     categorys(){
-  // categorys一旦有数据，就等界面更新，立即调用$nextTick函数，创建轮播对象。
+      // 检测categorys中是否有数据
+  // categorys一旦有数据，就等界面更新，立即调用$nextTick函数，（注意要写在数据更新之后）创建轮播对象。
       this.$nextTick(() => {
       new Swiper(".swiper-container", {
         loop: true, // 循环模式选项

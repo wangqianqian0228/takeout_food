@@ -18,7 +18,7 @@ export default {
   props: {
     score: Number,
     size: Number,
-  },
+  }, 
   data() {
     return {};
   },
