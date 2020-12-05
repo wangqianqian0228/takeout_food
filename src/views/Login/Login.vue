@@ -18,7 +18,7 @@
             class="verify"
             :class="{ 'get-verification': rightPhone }"
             :disabled="!rightPhone"
-            @click="getVerify"
+            @click.prevent="getVerify"
           >
             获取验证码
           </button>
@@ -95,7 +95,7 @@ export default {
     async getVerify(e) {
       // this.timer存在的时候，直接退出函数，不执行以后的代码
       // this.timer不存在的时候，相当于没有定时器，点击按钮有效
-
+console.log(111)
       if (this.timer) {
         return;
       }

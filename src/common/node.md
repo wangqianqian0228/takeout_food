@@ -326,3 +326,8 @@ computed: {
 ```
 
 当需要在页面中或者是form标签中放置一个button按钮的时候，如果这个按钮不是做提交表单的，切记一定要设置其的属性type="button"。否则，给button一个点击事件的时候，它会自动将type="button"，自动提交表单。
+
+模板中的数据来源：props/data/计算属性
+/^1[3|4|5|7|8][0-9]{9}$/.test(this.phone)：返回结果为true/false
+在form中的每一个表单点击时，都会默认提交表单，也就是url,search参数会加？
+v-model里面的属性字段名称要和提交的字段一致
