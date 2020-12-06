@@ -55,6 +55,11 @@
         </mt-tab-container-item>
       </mt-tab-container>
     </form>
+    <AlertTip
+      :alertText="alertText"
+      @closeTip="closeTip"
+      v-show="showAlert"
+    ></AlertTip>
   </div>
 </template>
 
@@ -65,6 +70,7 @@ import {
   phoneLogin, //手机号验证码登陆
   loginUser, //用户名密码登录
 } from "../../api/index";
+import AlertTip from "@/components/AlertTip/AlertTip";
 export default {
   data() {
     return {
@@ -76,10 +82,24 @@ export default {
       name: "", //用户名
       pwd: "", //密码登录的密码
       captcha: "", //图片验证码
+      alertText:'',
+      showAlert:false
     };
   },
+  // filters:{
+  //   hideTel(val){
+  //      if(!val){
+  //       return
+  //      }
+  //     let start = val.slice(0,3)
+  //     let end =  val.slice(7,11)
+  //     return start+'****'+end
 
-  components: {},
+  //   }
+  // },
+  components: {
+    AlertTip,
+  },
 
   computed: {
     // 结果为true或者false
@@ -95,7 +115,7 @@ export default {
     async getVerify(e) {
       // this.timer存在的时候，直接退出函数，不执行以后的代码
       // this.timer不存在的时候，相当于没有定时器，点击按钮有效
-console.log(111)
+      console.log(111);
       if (this.timer) {
         return;
       }
@@ -119,14 +139,17 @@ console.log(111)
         this.$toast({ message: `发送成功` });
       }
     },
+    // 将弹框信息封装成公共方法
+    alertTexts(text){
+        this.showAlert = true;
+        this.alertText = text;
+    },
     async login() {
       // 进行表单信息的预验证
       if (this.selected == 1) {
         //  处于短信验证码tab
-        if (!this.rightPhone) {
-          this.$messageBox({
-            message: "电话号码输入不正确，请重新输入！",
-          });
+        if (!this.rightPhone ) {
+          this.alertTexts('请输入正确的手机号')
           return;
         }
         // 没有手机号码错误的话，点击按钮预验证一条不通过，都不会执行发送异步请求
@@ -140,28 +163,22 @@ console.log(111)
         } else {
           // 将result.data存放到state中
           const user = result.data;
-          this.$store.dispatch('getUser',user)
+          this.$store.dispatch("getUser", user);
           // 返回个人中心界面
           this.$toast({ message: `登录成功` });
           this.$router.replace("/personal");
         }
       } else {
         if (!this.name) {
-          this.$messageBox({
-            message: "请输入用户名！",
-          });
+          alertTexts('请输入用户名')
           return;
         }
         if (!this.pwd) {
-          this.$messageBox({
-            message: "请输入密码！",
-          });
+          alertTexts('请输入密码')
           return;
         }
         if (!this.captcha) {
-          this.$messageBox({
-            message: "请输入验证码！",
-          });
+          alertTexts('请输入验证码')
           return;
         }
         const { name, pwd, captcha } = this;
@@ -172,13 +189,17 @@ console.log(111)
         } else {
           // 将result.data存放到state中
           const user = result.data;
-          this.$store.dispatch('getUser',user)
+          this.$store.dispatch("getUser", user);
           // 返回个人中心界面
           this.$toast({ message: `登录成功` });
           this.$router.replace("/personal");
           console.log(result);
         }
       }
+    },
+    // 关闭弹框
+    closeTip(){
+      this.showAlert = false
     },
     // 点击更换验证码图片
     getCaptcha() {
