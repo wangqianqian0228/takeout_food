@@ -83,24 +83,12 @@ export default {
       pwd: "", //密码登录的密码
       captcha: "", //图片验证码
       alertText:'',
-      showAlert:false
+      showAlert:false,
     };
   },
-  // filters:{
-  //   hideTel(val){
-  //      if(!val){
-  //       return
-  //      }
-  //     let start = val.slice(0,3)
-  //     let end =  val.slice(7,11)
-  //     return start+'****'+end
-
-  //   }
-  // },
   components: {
     AlertTip,
   },
-
   computed: {
     // 结果为true或者false
     rightPhone() {
@@ -111,11 +99,11 @@ export default {
   mounted() {},
 
   methods: {
+    // 倒计时递减
     // 点击按钮
     async getVerify(e) {
       // this.timer存在的时候，直接退出函数，不执行以后的代码
       // this.timer不存在的时候，相当于没有定时器，点击按钮有效
-      console.log(111);
       if (this.timer) {
         return;
       }
@@ -124,6 +112,7 @@ export default {
         num--;
         if (num < 0) {
           clearInterval(this.timer);
+          this.timer = undefined;
           e.target.innerHTML = `获取验证码`;
           return;
         }
@@ -132,6 +121,7 @@ export default {
       // 向后端发送ajax请求
       const result = await sendcaptcha(this.phone);
       // console.log(result);
+      // 短信发送失败
       if (result.code === 1) {
         this.$toast({ message: `${result.msg}` });
         clearInterval(this.timer);
@@ -158,6 +148,7 @@ export default {
         const { phone, code } = this;
         const result = await phoneLogin(phone, code);
         if (result.code === 1) {
+          // 登录失败
           this.$toast({ message: `${result.msg}` });
           clearInterval(this.timer);
         } else {
@@ -170,15 +161,15 @@ export default {
         }
       } else {
         if (!this.name) {
-          alertTexts('请输入用户名')
+          this.alertTexts('请输入用户名')
           return;
         }
         if (!this.pwd) {
-          alertTexts('请输入密码')
+          this.alertTexts('请输入密码')
           return;
         }
         if (!this.captcha) {
-          alertTexts('请输入验证码')
+          this.alertTexts('请输入验证码')
           return;
         }
         const { name, pwd, captcha } = this;
