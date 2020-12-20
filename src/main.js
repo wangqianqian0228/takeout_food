@@ -19,6 +19,7 @@ import {
   Switch,
   MessageBox
 } from 'mint-ui'
+import './mock/mockServer'
 
 let comsOption = {
   Button,

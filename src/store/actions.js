@@ -4,7 +4,10 @@ import {
     RECEIVE_CATEGORYS,
     RECEIVE_SHOPS,
     RECEIVE_USERINFO,
-    RESET_USERINFO
+    RESET_USERINFO,
+    RECEIVE_GOODS,
+    RECEIVE_RATINGS,
+    RECEIVE_INFOS
 } from './mutation-types'
 // 导入接口函数
 import {
@@ -12,7 +15,10 @@ import {
     reqFoodsCategorys,
     reqGeoShops,
     reqUserInfo,
-    UserLoginOut
+    UserLoginOut,
+    tabInfos,
+    tabGoods,
+    tabRatings
 } from '../api'
 
 export default {
@@ -93,5 +99,39 @@ export default {
         if(result.code===0){
             commit(RESET_USERINFO)
         }
-    }
+    },
+    // 异步获取商家信息
+    async getShopInfo({commit}) {
+        const result = await tabInfos()
+        if (result.code === 0) {
+            const infos = result.data
+            commit(RECEIVE_INFOS, {
+                infos
+            })
+        }
+    },
+    // 异步获取食品分类
+    async getGoods({
+        commit
+    }) {
+        const result = await tabGoods()
+        if (result.code === 0) {
+            const goods = result.data
+            commit(RECEIVE_GOODS, {
+                goods
+            })
+        }
+    },
+    // 异步获取评价
+    async getRatings({
+        commit
+    }) {
+        const result = await tabRatings()
+        if (result.code === 0) {
+            const ratings = result.data
+            commit(RECEIVE_RATINGS, {
+                ratings
+            })
+        }
+    },
 }

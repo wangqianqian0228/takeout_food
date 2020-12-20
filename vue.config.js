@@ -1,6 +1,7 @@
 module.exports = {
     devServer: {
         proxy: {
+            // 匹配所有以/api开头的请求路径，需要用代理的标识
             '/api': {
                 //要访问的跨域的域名
                 target: 'http://localhost:3000',

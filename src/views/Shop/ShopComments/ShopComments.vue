@@ -1,6 +1,6 @@
 <!-- 评价页 -->
 <template>
-  <div></div>
+  <div>评价fdsfsd</div>
 </template>
 
 <script>

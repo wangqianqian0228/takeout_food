@@ -1,6 +1,6 @@
 <!-- 商家详情页 -->
 <template>
-  <div></div>
+  <div>商家fewfe</div>
 </template>
 
 <script>

@@ -45,30 +45,36 @@ const routeOption = [{
   {
     path: '/login',
     name: "Login",
-  
+
   },
   {
     path: '/userinfo',
     name: "Userinfo",
-  
+
   },
   {
     path: '/shop',
     name: 'Shop',
     children: [{
-      path: '/shop/shopgoods',
-      name: 'ShopGoods',
-      component:ShopGoods
-    }, {
-      path: '/shop/shopcomments',
-      name: 'ShopComments',
-      component:ShopComments
-    }, {
-      path: '/shop/shopdetails',
-      name: 'ShopDetails',
-      component:ShopDetails
+        path: '/shop/shopgoods',
+        name: 'ShopGoods',
+        component: ShopGoods
+      }, {
+        path: '/shop/shopcomments',
+        name: 'ShopComments',
+        component: ShopComments
+      }, {
+        path: '/shop/shopdetails',
+        name: 'ShopDetails',
+        component: ShopDetails
 
-    }]
+      },
+      {
+        path: '',
+        redirect: '/shop/shopgoods'
+      }
+    ],
+
   }
 
 

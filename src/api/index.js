@@ -25,3 +25,9 @@ export const phoneLogin =(phone,code)=>ajax(`${BASE_URL}/login_sms`,{phone,code}
 export const reqUserInfo = ()=>ajax(`${BASE_URL}/userinfo`)
 // [10、用户登出](#10用户登出)<br/>
 export const UserLoginOut = ()=>ajax(`${BASE_URL}/logout`)
+// 获取食品
+export const tabGoods = () => ajax(`/goods`)
+// 获取评价
+export const tabRatings = () => ajax(`/ratings`)
+// 获取商家信息
+export const tabInfos = () => ajax(`/infos`)
