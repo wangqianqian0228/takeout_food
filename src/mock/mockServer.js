@@ -15,7 +15,7 @@ Mock.mock('/ratings', {
 // 获取商家信息
 Mock.mock('/infos', {
     code: 0,
-    data: data.infos
+    data: data.info
 })
 
 // export xxxx不需要暴露任何对象

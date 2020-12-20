@@ -1,6 +1,8 @@
 <!-- 点餐tab页 -->
 <template>
-  <div>点餐</div>
+  <div>
+    
+  </div>
 </template>
 
 <script>
