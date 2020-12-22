@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import ShopGoods from "@/views/Shop/ShopGoods/ShopGoods";
+// import ShopGoods from "@/views/Shop/ShopGoods/ShopGoods";
 // import ShopComments from '@/views/Shop/ShopComments/ShopComments'
 // import ShopDetails from '@/views/Shop/ShopDetails/ShopDetails'
 import ShopHeader from "@/components/ShopHeader/ShopHeader";
@@ -30,7 +30,7 @@ export default {
   },
 
   components: {
-    ShopGoods,
+    // ShopGoods,
     // ShopComments,
     // ShopDetails,
     ShopHeader,
@@ -61,6 +61,7 @@ export default {
     a{
       display: block;
       height: 100%;
+      font-size: .32rem;
     }
   }
   .selected{

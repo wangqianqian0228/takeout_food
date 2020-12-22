@@ -2,7 +2,7 @@
 <template>
   <div class="headers">
     <div class="top">
-      <i class="iconfont iconzuojiantou" @click="$router.back()"></i>
+      <i class="iconfont iconzuojiantou" @click="$router.push('/')"></i>
     </div>
     <div class="body">
       <img src="./imgs/bg1.png" alt="" class="shop-img" />
