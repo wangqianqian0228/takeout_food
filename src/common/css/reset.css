@@ -90,11 +90,18 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/*显示省略号*/
+/*单行显示省略号*/
 .ellipsis{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+/* 多行显示省略号 */
+.overellipsis{
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp: 2
 }
 *{
   box-sizing: border-box;

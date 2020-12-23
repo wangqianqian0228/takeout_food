@@ -16,6 +16,7 @@
         <router-link to="/shop/shopdetails">商家</router-link>
       </div>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -39,9 +40,7 @@ export default {
   computed: {},
 
   mounted() {
-    this.$store.dispatch("getGoods");
-    this.$store.dispatch("getShopInfo");
-    this.$store.dispatch("getRatings");
+
   },
 
   methods: {},
