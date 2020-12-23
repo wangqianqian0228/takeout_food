@@ -113,13 +113,14 @@ export default {
     // 异步获取食品分类
     async getGoods({
         commit
-    }) {
+    },callback) {
         const result = await tabGoods()
         if (result.code === 0) {
             const goods = result.data
             commit(RECEIVE_GOODS, {
                 goods
             })
+            callback()
         }
     },
     // 异步获取评价

@@ -43,6 +43,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import BetterScroll from 'better-scroll'
 
 export default {
   data() {
@@ -58,7 +59,11 @@ export default {
   },
 
   mounted() {
-   this.$store.dispatch('getGoods')
+   this.$store.dispatch('getGoods',()=>{
+     this.$nextTick(()=>{
+         new BetterScroll('.menu-wrapper')
+     })
+   })
   },
 
   methods: {
