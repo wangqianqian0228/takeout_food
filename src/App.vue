@@ -36,7 +36,7 @@ body {
   display: flex;
   flex-direction: column;
   .component-view {
-    flex: 1;
+    height: 100%;
     overflow: auto;
     &::-webkit-scrollbar {
       display: none;

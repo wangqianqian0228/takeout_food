@@ -9,7 +9,8 @@ import ShopGoods from '../views/Shop/ShopGoods/ShopGoods.vue'
 import ShopComments from '../views/Shop/ShopComments/ShopComments.vue'
 import ShopDetails from '../views/Shop/ShopDetails/ShopDetails.vue'
 Vue.use(VueRouter)
-const routeOption = [{
+const routeOption = [
+  {
     path: '/home',
     name: 'Home',
     meta: {
@@ -84,9 +85,11 @@ const routes = routeOption.map((route) => {
     ...route,
     component: () => import(`../views/${route.name}/${route.name}.vue`)
   }
+console.log("routeItem")
+
   return routeItem
+
 })
-// console.log(routes)
 
 const router = new VueRouter({
   mode: 'hash',

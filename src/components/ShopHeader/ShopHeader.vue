@@ -48,6 +48,7 @@ export default {
 </script>
 <style lang="less">
 .headers {
+  
   .top {
     height: 1rem;
     background-image: url("./imgs/bg1.png");

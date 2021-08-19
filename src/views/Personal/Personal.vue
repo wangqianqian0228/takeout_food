@@ -41,7 +41,7 @@
         <li class="list-item">
           <i class="iconfont iconhuiyuan"></i><span>美团外卖会员卡</span>
         </li>
-        <li class="list-item">
+        <li class="list-item" >
           <i class="iconfont iconfuwuzhongxin"></i><span>服务中心</span>
         </li>
       </ul>
@@ -51,16 +51,24 @@
         >退出登录</mt-button
       >
     </div>
+    <van-uploader :after-read="afterRead" v-model="fileList"  />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import spark from "spark-md5"
+
 import Header from "@/components/Header/Header";
 export default {
   data() {
     return {
-     
+      fileList: [
+        { url: 'https://img.yzcdn.cn/vant/leafeee.jpg' },
+        // Uploader 根据文件后缀来判断是否为图片文件
+        // 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
+        { url: 'https://cloud-image', isImage: true },
+      ],
     };
   },
 
@@ -72,7 +80,18 @@ export default {
     ...mapState(["userinfo"]),
   },
 
-  mounted() {},
+  mounted() {
+    // console.log(spark)
+  //  var sparksmall = new spark()
+  // //  向_buff中追加属性
+  //  sparksmall.append('Hi');
+  //  sparksmall.append(' there');
+  //  console.log(sparksmall)
+  //  var hexHash = sparksmall.end();
+  //  console.log(hexHash)//d9385462d3deff78c352ebb3f941ce12
+   var hexHash = spark.hash('1'); 
+   console.log(hexHash)//c4ca4238a0b923820dcc509a6f75849b
+  },
 
   methods: {
     // 退出登录
@@ -87,6 +106,10 @@ export default {
         // 点击取消时的回调函数
         ()=>{}
       );
+    },
+    afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      console.log(file);
     },
   },
 };

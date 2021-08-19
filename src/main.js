@@ -9,6 +9,10 @@ import './common/js/flexible'
 // import "swiper/swiper-bundle.min.css";
 // 按需导入mint-ui中的组件
 import {
+  Uploader,
+} from 'vant';
+import 'vant/lib/index.css';
+import {
   Button,
   Toast,
   Navbar,
@@ -47,7 +51,7 @@ Object.keys(comsOption).forEach(item => {
 // Vue.component(Toast.name,Toast);
 Vue.prototype.$toast = Toast;
 Vue.prototype.$messageBox = MessageBox;
-
+Vue.use(Uploader)
 import 'mint-ui/lib/style.css'
 
 Vue.config.productionTip = false

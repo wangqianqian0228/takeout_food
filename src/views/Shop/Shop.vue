@@ -1,6 +1,6 @@
 <!-- 商家详情首页 -->
 <template>
-  <div>
+  <div class="shop-content">
     <ShopHeader></ShopHeader>
     <!-- 点餐 -->
     <div class="tab-box">
@@ -25,11 +25,17 @@
 // import ShopComments from '@/views/Shop/ShopComments/ShopComments'
 // import ShopDetails from '@/views/Shop/ShopDetails/ShopDetails'
 import ShopHeader from "@/components/ShopHeader/ShopHeader";
+import { mapState } from 'vuex';
 export default {
   data() {
     return {};
   },
-
+  computed:{
+    ...mapState['infos']
+  },
+  mounted(){
+    this.$store.dispatch('getShopInfo')
+  },
   components: {
     // ShopGoods,
     // ShopComments,
@@ -47,7 +53,11 @@ export default {
 };
 </script>
 <style lang="less">
-.tab-box{
+.shop-content{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .tab-box{
   display: flex;
   height: .8rem;
   .common-tab{
@@ -70,4 +80,6 @@ export default {
     }
   }
 }
+}
+
 </style>

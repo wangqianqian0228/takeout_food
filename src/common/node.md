@@ -331,3 +331,10 @@ computed: {
 /^1[3|4|5|7|8][0-9]{9}$/.test(this.phone)：返回结果为true/false
 在form中的每一个表单点击时，都会默认提交表单，也就是url,search参数会加？
 v-model里面的属性字段名称要和提交的字段一致
+
+商家店铺详情
+拆分为4个组件：
+1. ShopGoods组件
+2. CartControl组件
+3. ShopCart组件
+4. Food组件

@@ -102,7 +102,7 @@ export default {
     },
     // 异步获取商家信息
     async getShopInfo({commit}) {
-        const result = await tabInfos()
+        const result = await tabInfos() 
         if (result.code === 0) {
             const infos = result.data
             commit(RECEIVE_INFOS, {
@@ -120,7 +120,7 @@ export default {
             commit(RECEIVE_GOODS, {
                 goods
             })
-            callback()
+            callback && callback()
         }
     },
     // 异步获取评价
